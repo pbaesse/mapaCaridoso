@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+	<div class="row">
+		<div class="col-lg-4">
+		  <h2   style="color : brown">Por que doar?</h2>
+		  	<p>A ideia da doação é uma forma de devolver a sociedade um pouco do que se consquistou,
+			seja de forma material ou sentimental, investindo em iniciativas que possam de alguma
+			forma mudar ou até mesmo salvar vidas. Diversas pessoas estão cada vez mais engajadas
+			nesta causa. Seja qual for a motivação, a doação é um ato grandioso que envolve diversos
+			sentimentos entre as partes da ação. O final de ano é uma época em que as pessoas costumam
+			fazer seus balanços pessoais: o que fizeram, o que deveriam ou não ter feito, mas o mais
+			importate é O QUE AINDA SE PODE FAZER? E você, já fez sua doação hoje?"</br></br>
+			link: http://www.acolhida.org.br/por-que-doar/</p>
+		</div>
+		<div class="col-lg-4">
+		  <h2   style="color : brown">Como doar através de nosso site?</h2>
+		  	<p>Nosso site é voltado para o cadastramento de instituições para que sua localização
+				 apareça em nosso mapa e assim, com esta informação, nossos visitantes e doadores possam
+				 doar de forma direta, no caso, doações de roupas, calçados, comidas, brinquedos, entre
+				 outros e para que possam tambem se informar como e onde doar sangue ou orgâos. Caso não
+				 possa se deslocar até o ponto, temos a possibilidade de cadastramento de doadores, para
+				 que possa doar dinheiro através de nosso site, para o lugar que quiser, desde que esteja
+				 dentro de nosso mapa.</p>
+	       </div>
+		<div class="col-lg-4">
+		  <h2  style="color : brown"> E quem irá ganhar com a minha doação?</h2>
+		  	<p>"Aprendi, outro dia que perdoar é a junção de "per" com "doar".
+				Doar é mais do que dar.
+				Doar é a entrega total do outro.
+				O prefixo "per" que tem várias acepções,
+				indica movimento no sentido "de"
+				ou em "direção" a ou "através"
+				ou "para" etimologicamente falando,
+				portanto, perdoar, quer dizer doar ao
+				outro a possibilidade de que ele possa amar,
+				possa doar-se.
+				Não apenas quem perdoa que se
+				"doa através do outro".
+				Perdoar implica abrir possibilidades de
+				amor para quem foi perdoado,
+				através da doação oferecida
+				por quem foi agravado.
+				Perdoar é a única forma de facilitar
+				ao outro a própria salvação.
+
+				Doar é mais do que dar: é a entrega total ...
+
+				Perdoar é doar o amor,
+				é permitir que a pessoa objeto do perdão
+				possa também devolver um amor que,
+				até então, só negara ..." Artur da Távola</p>
+	       </div>
+	</div>
+	
+
+{% endblock %}
+

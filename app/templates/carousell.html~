@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+	{% block carousell %}
+	<div class="owl-carousel owl-theme">
+	    <div class="item"><img src="../static/images/crianças.png"></div>
+	    <div class="item"><img src="../static/images/idoso.png"></div>
+	    <div class="item"><img src="../static/images/cid.png"></div>
+	    <div class="item"><img src="../static/images/ds.png"></div>
+	   
+	</div>
+	{% endblock %}

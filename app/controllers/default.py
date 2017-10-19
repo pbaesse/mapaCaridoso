@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db, lm
 from flask_login import login_user, logout_user, current_user
-from app.models.forms import LoginForm, CadastroUser, CadastroInstituicao
-from app.models.tables import Usuario, Instituicao
+from app.models.forms import LoginForm, CadastroUser, CadastroInstituicao, CadastroEnderecoIns
+from app.models.tables import Usuario, Instituicao, EnderecoInstituicao
 
 #<----- logar usuário e instituição e deslogar ------->
 
@@ -36,7 +36,7 @@ def logini():
 		if instituicao and instituicao.password == form.password.data:
 			login_user(instituicao)
 			flash("	Olá, "+instituicao.nome+"!")
-			return redirect(url_for("index"))
+			return render_template('paginainicialins.html')
 		else:
 			flash("Login inválido!")
 	return render_template('logini.html',
@@ -130,8 +130,49 @@ def cadastroi():
 					form=form)
 
 #<----- cadastrar usuário e instituição e deslogar ------->
+
+#<--------------- Instituições --------------------------->
+@app.route("/paginainicialins")
+def paginainicialins():
+	return render_template('paginainicialins.html')
+
+@app.route("/cadastrarenderecoins")
+def cadastrarenderecoins():
+	form = CadastroEnderecoIns()
+	return render_template('cadastrarenderecoins.html', 
+						          form=form)
+
+@app.route("/cadastroendereco", methods=['GET', 'POST'])
+def cadastroendereco():
+	form = CadastroEnderecoIns()	
+	ins = current_user.id_i
+	if form.validate_on_submit():
+		if request.method == "POST":
+			rua = request.form.get("rua")
+			numero = request.form.get("numero")
+			bairro = request.form.get("bairro")
+			cep = request.form.get("cep")
+			cidade = request.form.get("cidade")
+			estado = request.form.get("estado")
+			pais = request.form.get("pais")
+			latitude = request.form.get("latitude")
+			longitude = request.form.get("longitude")
+			id_i = ins
+
+			if rua and numero and bairro and cep and cidade and estado and pais and latitude and longitude and id_i:
+				c = EnderecoInstituicao(rua, numero, bairro, cep, cidade, estado, pais, latitude, longitude, id_i)
+				db.session.add(c)
+				db.session.commit()
+
+			return redirect(url_for("paginainicialins"))
+	return render_template('paginainicialins.html',form=form)
+#<--------------- Instituições --------------------------->
 @app.route("/index")
 @app.route("/")
 def index():
 	return render_template('index.html')
+
+
+
+
 

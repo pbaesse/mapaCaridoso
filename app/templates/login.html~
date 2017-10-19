@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block login %}
+	
+	<div class="col-md-4 col-md-offset-4">
+	<h2 style="color: brown">Login</h2></br>
+	<form action = "" method="POST">
+		{{ form.csrf_token }}
+		<div class="form-group">
+		<label style="color: brown">Username:</label>
+			{{form.username(class="form-control", placeholder="seu_usuario")}}
+			{% if form.errors.username %}
+			<div class="alert alert-danger" role="alert">
+				<ul>
+					{% for e in form.errors.username %}
+					<li>{{ e }}</li>
+					{% endfor %}
+				</ul>		
+			</div>
+			{% endif %}
+		</div>
+		<div class="form-group">
+		<label style="color: brown">Password:</label>
+			{{form.password(class="form-control", placeholder="sua_senha")}}
+			{% if form.errors.password %}
+			<div class="alert alert-danger" role="alert">
+				<ul>
+					{% for e in form.errors.password %}
+					<li>{{ e }}</li>
+					{% endfor %}
+				</ul>			
+			</div>
+			{% endif %}
+		</div>
+		<div class="check-box">
+			<label style="color: brown">
+				{{ form.remember_me }} Lembre-me
+			</label>
+		</div>
+		<center>
+		<button type="submit" class="btn btn-default" style="background-color: brown; color: #FFDEAD"> Entrar </button>
+		</center>
+	</form>
+	</div>
+{% endblock %}

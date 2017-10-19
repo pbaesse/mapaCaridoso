@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Mapa Caridoso</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/mp1.css') }}">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script type="text/javascript">
+		function adiciona(){
+			document.teste.campo1.value += menu.value;
+			}
+	</script>
+  </head>
+
+  <body>
+	
+    <div class="container">
+	</hr>
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      
+	<p>   <p>
+	<div class="alert alert-warning">
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		    <ul class=flashes>
+		    {% for message in messages %}
+		      <li>{{ message }}</li>
+		    {% endfor %}
+		    </ul>
+		  {% endif %}
+		{% endwith %}
+	</div>
+      <!-- Jumbotron -->
+	<div class="jumbotron" style="background-color: brown">
+		<img src="../static/images/tst.png" id= "tst" height="150" width="200">
+		<p> </p>
+		<h1 style="color: #FFDEAD">Mapa Caridoso</h1>
+		<p class="lead" style="color: #FFDEAD">A solidariedade é contagiosa. Contagie e se deixe contagiar!</p>	
+	</div>
+	<div class="masthead">
+		<nav>
+		  <ul class="nav nav-justified">
+		    <li style="background-color : #FFDEAD"><a style="color : brown" href="#">Mapa</a></li>
+		    <li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('qualcadastro')}}">Cadastrar</a></li>
+			{% if current_user.is_authenticated %}
+			<li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('logout')}}">Sair</a></li>
+			{% else %}
+			<li style="background-color : #FFDEAD" class="active"><a style="color : brown" href="{{url_for('quallogin')}}">Acessar</a></li>
+			{% endif %}
+		    <li style="background-color : #FFDEAD"><a style="color : brown" href="#">Sobre</a></li>
+		  </ul>
+		</nav>
+	</div>
+	<h1>  </h1>
+
+      <!-- Example row of columns -->
+
+	{% block content %}
+	{% endblock %}
+
+      <!-- Login -->	
+
+	{% block quallogin %}
+	{% endblock %}
+
+	{% block loginu %}
+	{% endblock %}
+
+	{% block logini %}
+	{% endblock %}
+
+      <!-- Cadastro -->
+
+	{% block qualcadastro %}
+	{% endblock %}
+	
+	{% block cadastrou %}
+	{% endblock %}
+		
+	{% block cadastroi %}
+	{% endblock %}
+
+	</div> <!-- /container -->
+	<h1>  </h1>
+	<div class="masthead">
+		<nav>
+		  <ul class="nav nav-justified">
+		    <li style="background-color : brown"><a style="color : brown" href="#"></a></li>
+		    <li style="background-color : brown"><a style="color : brown" href="#"></a></li>
+		    <li style="background-color : brown"><a style="color : brown" href="#"></a></li>
+		  </ul>
+		</nav>
+	</div>
+	
+	<p>   <p>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
