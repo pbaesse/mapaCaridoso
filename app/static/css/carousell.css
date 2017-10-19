@@ -1,0 +1,21 @@
+.item{
+
+}
+
+.owl-carousel{
+	margin: 0px 0px 0px 0px;
+	width: 60%;
+	border: 5px solid brown;
+	border-radius: 10px;
+}
+
+.owl-carousel img {
+	height: 400px;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #333;	
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    background: brown;

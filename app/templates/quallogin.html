@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block quallogin %}
+<form action="{{url_for('quallogin')}}">
+	<div class="col-md-1 col-md-offset-2">
+		<div class="container marketing">
+			 <div class="row">
+				<div class="col-lg-4">
+				  <img class="img-circle" src="http://www.socialbits.com.br/wp-content/uploads/2015/03/user.png" alt="Generic placeholder image" width="140" height="140">
+				  <h2 style="color: brown">Usuário</h2>
+				  <p style="color: brown">Se você já é um usuário do nosso sistema, clique no botão a seguir.</p>
+				  <p><a class="btn btn-default" href="{{url_for('logaruser')}}" role="button" style="background-color: #FFDEAD; color: brown">Logar doador &raquo;</a></p>
+				</div>
+				<div class="col-lg-4">
+				  <img class="img-circle" src="http://www.comstop.com.br/sites/default/files/resize/images/imagens-alertas-de-trade---analistas1-235x256.png" alt="Generic placeholder image" width="140" height="140">
+				  <h2 style="color: brown">Instituição</h2>
+				  <p style="color: brown">Se você já é uma instituição do nosso sistema, clique no botão a seguir.</p>
+				  <p><a class="btn btn-default" href="{{url_for('logarinstituicao')}}" role="button" style="background-color: #FFDEAD; color: brown">Logar instituição &raquo;</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}
