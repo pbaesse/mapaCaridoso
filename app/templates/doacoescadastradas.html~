@@ -1,0 +1,25 @@
+{% extends 'baseinstituicao.html' %}
+
+{% block doacoescadastradas %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
+		<h2 style="color: brown">Doações cadastrados</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">ID:</td>
+					<td style="border: 1px solid;">Descrição:</td>
+					<td style="border: 1px solid;">Data:</td>
+					<td style="border: 1px solid;">Seu ID:</td>
+					<td style="border: 1px solid;">TAG:</td>
+				</tr>
+				{% for doacao in doacao %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{doacao.id_d}}</td>
+					<td style="border: 1px solid;">{{doacao.descricao}}</td>
+					<td style="border: 1px solid;">{{doacao.data}}</td>
+					<td style="border: 1px solid;">{{doacao.id_i}}</td>
+					<td style="border: 1px solid;">{{doacao.id_td}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+	</div>
+{% endblock %}

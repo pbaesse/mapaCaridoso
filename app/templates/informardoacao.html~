@@ -1,0 +1,130 @@
+{% extends 'baseinstituicao.html' %}
+
+{% block informardoacao %}
+
+        <div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
+	<div class="col-md-6 col-md-offset-2">
+		<h2 style="color: brown">Cadastro de Endereço</h2>
+		<form action="{{url_for('cadastroendereco')}}" method="POST">
+		
+		{{ form.csrf_token }}
+		<div class="form-group">
+			<label style="color: brown">Rua:</label>
+			{{form.rua(class="form-control")}}	
+			{%if form.errors.rua%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.rua %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</ul>
+		</div>
+		<div class="form-group">
+			<label style="color: brown">Número:</label>
+			{{form.numero(class="form-control")}}	
+			{%if form.errors.numero%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.numero %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>
+		<div class="form-group">
+			<label style="color: brown">Bairro:</label>
+			{{form.bairro(class="form-control")}}
+			{%if form.errors.bairro%}	
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.bairro %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>		
+		<div class="form-group">		
+			<label style="color: brown">CEP:</label>
+			{{form.cep(class="form-control")}}	
+			{%if form.errors.cep%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.cep %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>
+		<div>
+			<label style="color: brown">Cidade:</label>
+			{{form.cidade(class="form-control")}}	
+			{%if form.errors.cidade%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.cidade %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>	
+		<div>
+			<label style="color: brown">Estado:</label>
+			{{form.estado(class="form-control")}}	
+			{%if form.errors.estado%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.estado %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>		
+		<div>
+			<label style="color: brown">País:</label>
+			{{form.pais(class="form-control")}}	
+			{%if form.errors.pais%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.pais %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>	
+		<div>
+			<label style="color: brown">Latitude:</label>
+			{{form.latitude(class="form-control")}}	
+			{%if form.errors.latitude%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.latitude %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>	
+		<div>
+			<label style="color: brown">Longitude:</label>
+			{{form.longitude(class="form-control")}}	
+			{%if form.errors.longitude%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.longitude %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>	
+		<p></p>
+		<div>
+			<button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Cadastrar</button>
+		</div>
+		</form>
+		
+	<h1>  </h1>
+	</div>
+        </div>
+	
+{% endblock %}

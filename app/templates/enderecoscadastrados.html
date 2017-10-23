@@ -1,0 +1,38 @@
+{% extends 'baseinstituicao.html' %}
+
+{% block enderecoscadastrados %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
+		<h2 style="color: brown">Endereços cadastrados</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">ID:</td>
+					<td style="border: 1px solid;">Rua:</td>
+					<td style="border: 1px solid;">Número:</td>
+					<td style="border: 1px solid;">Bairro:</td>
+					<td style="border: 1px solid;">CEP:</td>
+					<td style="border: 1px solid;">Cidade:</td>
+					<td style="border: 1px solid;">Estado:</td>
+					<td style="border: 1px solid;">Pais:</td>
+					<td style="border: 1px solid;">Latitude:</td>
+					<td style="border: 1px solid;">Longitude:</td>
+					<td style="border: 1px solid;">Seu ID:</td>
+				</tr>
+				{% for endereco_instituicoes in endereco_instituicoes%}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{endereco_instituicoes.id_ei}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.rua}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.numero}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.bairro}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.cep}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.cidade}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.estado}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.pais}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.latitude}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.longitude}}</td>
+					<td style="border: 1px solid;">{{endereco_instituicoes.id_i}}</td>
+			
+				</tr>
+				{% endfor %}
+			</table>
+	</div>
+{% endblock %}

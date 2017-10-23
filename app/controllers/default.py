@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db, lm
 from flask_login import login_user, logout_user, current_user
-from app.models.forms import LoginForm, CadastroUser, CadastroInstituicao, CadastroEnderecoIns
-from app.models.tables import Usuario, Instituicao, EnderecoInstituicao
+from app.models.forms import LoginForm, CadastroUser, CadastroInstituicao, CadastroEnderecoIns, InformarDoacao, DigitandoInstituicao
+from app.models.tables import Usuario, Instituicao, EnderecoInstituicao, Doacao
 
 #<----- logar usuário e instituição e deslogar ------->
 
@@ -22,7 +22,7 @@ def loginu():
 		if user and user.password == form.password.data:
 			login_user(user)
 			flash("	Olá, "+user.nome+"!")
-			return redirect(url_for("index"))
+			return render_template('paginainicialusu.html')
 		else:
 			flash("Login inválido!")
 	return render_template('loginu.html',
@@ -134,6 +134,7 @@ def cadastroi():
 #<--------------- Instituições --------------------------->
 @app.route("/paginainicialins")
 def paginainicialins():
+	ins = current_user.username
 	return render_template('paginainicialins.html')
 
 @app.route("/cadastrarenderecoins")
@@ -166,7 +167,71 @@ def cadastroendereco():
 
 			return redirect(url_for("paginainicialins"))
 	return render_template('paginainicialins.html',form=form)
+
+
+@app.route("/informardoacaoins")
+def informardoacaoins():
+	form = InformarDoacao()
+	return render_template('informardoacaoins.html', 
+						          form=form)
+
+@app.route("/informardoacao", methods=['GET', 'POST'])
+def informardoacao():
+	form = InformarDoacao()
+	ins = current_user.id_i
+	if form.validate_on_submit():
+		if request.method == "POST":
+			descricao = request.form.get("descricao")
+			data = request.form.get("data")
+			id_i = ins
+			id_td = request.form.get("id_td")
+	
+			if descricao and data and id_i and id_td:
+				ind = Doacao(descricao, data, id_i, id_td)
+				db.session.add(ind)
+				db.session.commit()
+
+			return redirect(url_for("paginainicialins"))
+	return render_template('paginainicialins.html', form = form)
+
+
+@app.route("/enderecoscadastrados")
+def enderecoscadastrados():
+	ins = current_user.id_i
+	endereco_instituicoes = EnderecoInstituicao.query.filter_by(id_i=ins).all()
+	return render_template("enderecoscadastrados.html", endereco_instituicoes=endereco_instituicoes)
+
+@app.route("/doacoescadastradas")
+def doacoescadastradas():
+	ins = current_user.id_i
+	doacao = Doacao.query.filter_by(id_i=ins).all()
+	return render_template("doacoescadastradas.html", doacao=doacao)
 #<--------------- Instituições --------------------------->
+
+#<------------------ Usuário ----------------------------->
+
+@app.route("/paginainicialusu")
+def paginainicialusu():
+	return render_template('paginainicialusu.html')
+
+@app.route("/digitandoinstituicao")
+def digitandoinstituicao():
+	form = DigitandoInstituicao()
+	return render_template('digitandoinstituicao.html', form=form)
+
+@app.route("/buscandoinstituicao", methods=['GET', 'POST'])
+def buscandoinstituicao():
+	form = DigitandoInstituicao()
+	if form.validate_on_submit():
+		if request.method == "POST":
+			tipo_i = request.form.get("tipo_i")
+			if tipo_i:
+				tipo_i = Instituicao.query.filter_by(tipo_i=tipo_i).all()
+				return render_template("instituicoesencontradas.html", tipo_i=tipo_i)
+			return redirect(url_for("paginainicialusu"))
+	return render_template('paginainicialusu.html',form=form)
+
+#<------------------ Usuário ----------------------------->
 @app.route("/index")
 @app.route("/")
 def index():

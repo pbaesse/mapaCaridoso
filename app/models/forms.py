@@ -32,3 +32,11 @@ class CadastroEnderecoIns(FlaskForm):
 	pais = StringField("pais", validators=[DataRequired()])
 	latitude = StringField("latitude", validators=[DataRequired()])
 	longitude = StringField("longitude", validators=[DataRequired()])
+
+class InformarDoacao(FlaskForm):
+	descricao = StringField("descricao", validators=[DataRequired()])
+	data = StringField("data", validators=[DataRequired()])
+	id_td = StringField("id_td", validators=[DataRequired()])
+	
+class DigitandoInstituicao(FlaskForm):
+	tipo_i = StringField("tipo_i", validators=[DataRequired()])
