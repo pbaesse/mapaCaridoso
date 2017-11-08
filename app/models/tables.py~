@@ -57,12 +57,29 @@ class TipoInstituicao(db.Model):
 	id_ti = db.Column(db.Integer, primary_key=True)
 	nome = db.Column(db.String)
 
+	@property
+	def is_authenticated(self):
+		return True
+
+	@property
+	def is_active(self):
+		return True
+
+	@property
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		return str(self.id_ti)
+	
+	def __iter__(self):
+	        return iter(self.id_ti)
+
 	def __init__(self, nome):
 		self.nome = nome
 
 	def __repr__(self):
-
-		return "<Tipo da Instituição %r>" % self.nome
+		return self.nome
 
 class Instituicao(db.Model):
 	__tablename__ = "instituicoes"
@@ -90,6 +107,15 @@ class Instituicao(db.Model):
 	def is_anonymous(self):
 		return False
 
+	def __iter__(self):
+	        return iter(self.nome)
+
+	def __iter__(self):
+	        return iter(self.tipo_i)
+
+	def __iter__(self):
+	        return iter(self.id_i)
+
 	def get_id(self):
 		return str(self.id_i)
 
@@ -102,7 +128,7 @@ class Instituicao(db.Model):
 		self.username = username
 
 	def __repr__(self):
-		return "<User %r>" % self.username
+		return self.nome
 
 class Avaliacao(db.Model):
 	__tablename__ = "avaliacoes"
@@ -116,6 +142,21 @@ class Avaliacao(db.Model):
 
 	usuario = db.relationship('Usuario', foreign_keys = id_u)
 	instituicao = db.relationship('Instituicao', foreign_keys = id_i)
+
+	@property
+	def is_authenticated(self):
+		return True
+
+	@property
+	def is_active(self):
+		return True
+
+	@property
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		return str(self.id_a)
 
 	def __init__(self, pontuacao, comentario, data, id_u, id_i):
 		self.pontuacao = pontuacao
@@ -184,7 +225,7 @@ class TagsDoacao(db.Model):
 		self.tag = tag
 
 	def __repr__(self):
-		return "<Tag %r>" % self.tag
+		return self.tag
 
 class Doacao(db.Model):
 	__tablename__ = "doacao"
@@ -197,6 +238,9 @@ class Doacao(db.Model):
 
 	instituicao = db.relationship('Instituicao', foreign_keys = id_i)
 	tag = db.relationship('TagsDoacao', foreign_keys = id_td)
+
+	def __iter__(self):
+	        return iter(self.id_i)
 
 	def __init__(self, descricao, data, id_i, id_td):
 		self.descricao = descricao
@@ -219,9 +263,27 @@ class Denuncia(db.Model):
 	usuario = db.relationship('Usuario', foreign_keys = id_u)
 	instituicao = db.relationship('Instituicao', foreign_keys = id_i)
 
-	def __init__(self, descricao, data):
+	@property
+	def is_authenticated(self):
+		return True
+
+	@property
+	def is_active(self):
+		return True
+
+	@property
+	def is_anonymous(self):
+		return False	
+
+	def get_id(self):
+		return str(self.id_ei)	
+
+	def __init__(self, id_u, id_i, descricao, data):
+		self.id_u = id_u
+		self.id_i = id_i
 		self.descricao = descricao
 		self.data = data
 
 	def __repr__(self):
 		return "<Denuncia %r>" % self.descricao
+

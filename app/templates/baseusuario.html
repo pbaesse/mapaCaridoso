@@ -65,15 +65,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a style="color: #FFDEAD"class="navbar-brand" href="#">Mapa Caridoso - Doador</a>
+	<img src="../static/images/tst.png" id= "tst" height="50" width="70">
+          <a style="color: #FFDEAD"class="navbar-brand" href="{{url_for('paginainicialusu')}}">Mapa Caridoso - {{ session['nome_u'] }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+		<li><a style="color: #FFDEAD" href="{{url_for('paginainicialusu')}}">Página inicial</a></li>
             <li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -92,11 +91,20 @@
 
 	
 	<div class="container-fluid">
-	      <div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
-		  <ul class="nav nav-sidebar">
-		    <li class="active"><a style="color: brown" href="{{url_for('paginainicialusu')}}">Página Inicial <span class="sr-only">(current)</span></a></li>
-			<li class="active"><a style="color: brown" href="{{url_for('digitandoinstituicao')}}">Buscar Instituição <span class="sr-only">(current)</span></a></li>
+	      <div class="row" >
+		<div class="col-sm-3 col-md-2 sidebar" >
+		  <ul class="nav nav-sidebar" >
+			<li class="active"><a style="color: brown" href="{{url_for('paginainicialusu')}}">Página Inicial <span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<h4>Buscar Instituição</h4>
+			<li class="active"><a style="color: brown" href="{{url_for('tiposencontrados')}}">Tipo específico<span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('doacoesencontradas')}}">Doações solicitadas<span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('buscarendereco')}}">Endereço<span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color:brown; box-sizing:border-box; width:100%;  "></hr>
+			<h4>Realizar</h4>
+			<li class="active"><a style="color: brown" href="{{url_for('avaliarins')}}">Avaliação de instituição<span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('denunciarins')}}">Denúncia de instituição<span class="sr-only">(current)</span></a></li>			
+			<hr style=" border-color:brown; box-sizing:border-box; width:100%;  "></hr>
 		  </ul>
 		 </div> 
 
@@ -108,6 +116,30 @@
 
 			{% block instituicoesencontradas %}
 			{% endblock %}
+		
+			{% block doacoesencontradas %}
+			{% endblock %}
+		
+			{% block instituicoesencontradasdoacoes %}
+			{% endblock %}
+
+			{% block enderecosencontradosdoacoes %}
+			{% endblock %}	
+	
+			{% block enderecosencontradosdoacoesfinal %}
+			{% endblock %}
+	
+			{% block avaliarinstituicao %}
+			{% endblock %}	
+
+			{% block avaliarins %}
+			{% endblock %}	
+
+			{% block denunciarinstituicao %}
+			{% endblock %}	
+
+			{% block denunciarins %}
+			{% endblock %}			
 			
 		</div>
 	</div>

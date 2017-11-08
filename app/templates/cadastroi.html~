@@ -2,11 +2,11 @@
 
 {% block cadastroi %}
 <div class="col-md-4 col-md-offset-3">
-<h2>Cadastro de Instituição</h2>
+<h2 style="color: brown">Cadastro de Instituição</h2>
 <form action="{{url_for('cadastroi')}}" method="POST">
 		{{ form.csrf_token }}
 		<div class="form-group">
-			<label>Nome:</label>
+			<label style="color : brown">Nome:</label>
 			{{form.nome(class="form-control")}}
 			{%if form.errors.nome%}	
 			<div class="alert alert-danger" role="alert">
@@ -18,7 +18,7 @@
 			{%endif%}
 		</div>
 		<div class="form-group">		
-			<label>Descrição:</label>
+			<label style="color : brown">Descrição:</label>
 			{{form.descricao(class="form-control")}}	
 			{%if form.errors.descricao%}
 			<div class="alert alert-danger" role="alert">
@@ -30,7 +30,7 @@
 			{%endif%}
 		</div>
 		<div class="form-group">
-			<label>ID do usuário (Se caso não tiver, digite 'null' no espaço reservado):</label>
+			<label style="color : brown">ID do usuário (Se caso não tiver, digite 'null' no espaço reservado):</label>
 			{{form.id_u(class="form-control")}}	
 			{%if form.errors.id_u%}
 			<div class="alert alert-danger" role="alert">
@@ -42,7 +42,7 @@
 			{%endif%}
 		</div>	
 		<div class="form-group">
-			<label>Tipo</label>
+			<label style="color : brown">Tipo</label>
 			<ul style="color: brown; border: 1px solid; border-radius: 10px">
 				<li>1 - Família</li>
 				<li>2 - Escola</li>
@@ -64,7 +64,7 @@
 			{%endif%}
 		</div>	
 		<div class="form-group">
-			<label>InstituiçãoPassword:</label>
+			<label style="color : brown">InstituiçãoPassword:</label>
 			{{form.password(class="form-control")}}	
 			{%if form.errors.password%}
 			<div class="alert alert-danger" role="alert">
@@ -76,7 +76,7 @@
 			{%endif%}
 		</div>
 		<div class="form-group">
-			<label>InstituiçãoUsername:</label>
+			<label style="color : brown">InstituiçãoUsername:</label>
 			{{form.username(class="form-control")}}	
 			{%if form.errors.username%}
 			<div class="alert alert-danger" role="alert">
@@ -90,7 +90,7 @@
 		</div>	
 		
 		<div>
-			<button type="submit" class="btn btn-default" style="background-color: #FFDEAD; color: brown">Cadastrar</button>
+			<button type="submit" class="btn btn-default" style="background-color: #FFDEAD; color: brown">Pŕoximo &raquo &raquo;</button>
 		</div>
 </form>
 

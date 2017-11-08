@@ -1,15 +1,26 @@
-{% extends 'baseinstituicao.html' %}
+{% extends 'baseusuario.html' %}
 
-{% block informardoacao %}
+{% block denunciarins %}
 
-        <div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
-	<div class="col-md-6 col-md-offset-2">
-		<h2 style="color: brown">Informar Doação</h2>
-		<form action="{{url_for('informardoacao')}}" method="POST">
+<div class="col-md-6 col-md-offset-2">
+		<h2 style="color: brown">Denunciar Instituição</h2>
+		<form action="{{url_for('denunciarinstituicao')}}" method="POST">
 		
 		{{ form.csrf_token }}
 		<div class="form-group">
-			<label style="color: brown">Descricao:</label>
+			<label style="color: brown">ID da instituição:</label>
+			{{form.id_i(class="form-control")}}	
+			{%if form.errors.id_i%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.id_i %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</ul>
+		</div><div class="form-group">
+			<label style="color: brown">Descrição:</label>
 			{{form.descricao(class="form-control")}}	
 			{%if form.errors.descricao%}
 			<div class="alert alert-danger" role="alert">
@@ -32,7 +43,7 @@
 			{% endfor %}
 			</div>
 			{%endif%}
-		</div>
+		</ul>
 		<p></p>
 		<div>
 			<button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Informar</button>
@@ -40,7 +51,6 @@
 		</form>
 		
 	<h1>  </h1>
-	</div>
         </div>
-	
+
 {% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'baseusuario.html' %}
+
+{% block avaliarins %}
+
+<div class="col-md-6 col-md-offset-2">
+		<h2 style="color: brown">Avaliar Instituição</h2>
+		<form action="{{url_for('avaliarinstituicao', id=form.id_i)}}" method="POST">
+		
+		{{ form.csrf_token }}
+		<div class="form-group">
+			<label style="color: brown">Pontuação:</label>
+			{{form.pontuacao(class="form-control")}}	
+			{%if form.errors.pontuacao%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.pontuacao %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</ul>
+		</div>
+		<div class="form-group">
+			<label style="color: brown">Comentário:</label>
+			{{form.comentario(class="form-control")}}	
+			{%if form.errors.comentario%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.comentario %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</ul>
+		</div>
+		<div class="form-group">
+			<label style="color: brown">Data:</label>
+			{{form.data(class="form-control")}}	
+			{%if form.errors.data%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.data %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</ul>
+		</div>
+		<p></p>
+		<div>
+			<button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Informar</button>
+		</div>
+		</form>
+		
+	<h1>  </h1>
+        </div>
+{% endblock %}

@@ -106,6 +106,9 @@
 	{% block cadastroi %}
 	{% endblock %}
 
+	{% block cadastrarendereco %}
+	{% endblock %}
+
 	</div> <!-- /container -->
 	<h1>  </h1>
 	<div class="masthead">

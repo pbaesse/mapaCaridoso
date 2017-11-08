@@ -1,0 +1,15 @@
+{% extends 'baseusuario.html' %}
+
+{% block instituicoesencontradasdoacoes %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
+		 <h2  style="color: brown" class="featurette-heading">Nome: <span class="text-muted">{{ins.nome}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Descrição: <span class="text-muted">{{ins.descricao}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Tipo: <span class="text-muted">{{ins.tipo}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Estado: <span class="text-muted">{{onde.estado}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Cidade: <span class="text-muted">{{onde.cidade}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Bairro: <span class="text-muted">{{onde.bairro}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Rua: <span class="text-muted">{{onde.rua}}</span></h2>
+		 <h2  style="color: brown" class="featurette-heading">Número: <span class="text-muted">{{onde.numero}}</span></h2>
+	</div>
+	
+{% endblock %}

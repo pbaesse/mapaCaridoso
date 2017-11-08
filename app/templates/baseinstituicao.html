@@ -59,21 +59,15 @@
     <nav style="position:relative; background-color: brown; border: 1px solid; border-color: brown" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a style="color: #FFDEAD"class="navbar-brand" href="#">Mapa Caridoso - Instituição</a>
+	<img src="../static/images/tst.png" id= "tst" height="50" width="70">
+          <a style="color: #FFDEAD"class="navbar-brand" href="{{url_for('paginainicialins')}}">Mapa Caridoso - {{ session['nome_i'] }}</a>
         </div>
+		
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+		<li><a style="color: #FFDEAD" href="{{url_for('paginainicialins')}}">Página inicial</a></li>
             <li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -96,27 +90,37 @@
 		<div class="col-sm-3 col-md-2 sidebar">
 		  <ul class="nav nav-sidebar">
 		    <li class="active"><a style="color: brown" href="{{url_for('paginainicialins')}}">Página Inicial <span class="sr-only">(current)</span></a></li>
-		    <li><a style="color: brown" href="{{url_for('cadastrarenderecoins')}}">Cadastrar Endereço</a></li>
-		    <li><a style="color: brown" href="{{url_for('informardoacaoins')}}">Informar Doação</a></li>
-		    <li><a style="color: brown" href="{{url_for('enderecoscadastrados')}}">Endereços cadastrados</a></li>
-		    <li><a style="color: brown" href="{{url_for('doacoescadastradas')}}">Doações cadastrados</a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<h4>Doação</h4>
+		    <li><a style="color: brown" href="{{url_for('informardoacaoins')}}">Informar</a></li>
+		    <li><a style="color: brown" href="{{url_for('doacoescadastradas')}}">Visualizar</a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+		    <li><a style="color: brown" href="{{url_for('enderecoscadastrados')}}">Endereço cadastrado</a></li>
+			<li><a style="color: brown" href="{{url_for('avaliacoesfeitas')}}">Avaliações</a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+		  </ul>
 		  </ul>
 		 </div> 
 
 			{% block paginainiciali %}
 			{% endblock %}
-
-			{% block cadastrarendereco %}
-			{% endblock %}
 	
 			{% block informardoacao %}
 			{% endblock %}
 		
+			{% block informardoa %}
+			{% endblock %}
+
 			{% block enderecoscadastrados %}
 			{% endblock %}
 
 			{% block doacoescadastradas %}
 			{% endblock %}
+
+			{% block avaliacoesfeitas %}
+			{% endblock %}
+
+
 			
 		</div>
 	</div>

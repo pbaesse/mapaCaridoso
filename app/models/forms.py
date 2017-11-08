@@ -36,7 +36,18 @@ class CadastroEnderecoIns(FlaskForm):
 class InformarDoacao(FlaskForm):
 	descricao = StringField("descricao", validators=[DataRequired()])
 	data = StringField("data", validators=[DataRequired()])
-	id_td = StringField("id_td", validators=[DataRequired()])
 	
 class DigitandoInstituicao(FlaskForm):
 	tipo_i = StringField("tipo_i", validators=[DataRequired()])
+
+class DigitandoInstituicaoDoacao(FlaskForm):
+	id_i = StringField("id_i", validators=[DataRequired()])
+
+class AvaliarInstituicao(FlaskForm):
+	pontuacao = StringField("pontuacao", validators=[DataRequired()])
+	comentario = StringField("comentario", validators=[DataRequired()])
+	data = StringField("data", validators=[DataRequired()])
+
+class DenunciarInstituicao(FlaskForm):
+	descricao = StringField("descricao", validators=[DataRequired()])
+	data = StringField("data", validators=[DataRequired()])

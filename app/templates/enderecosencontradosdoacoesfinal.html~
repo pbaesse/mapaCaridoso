@@ -1,0 +1,26 @@
+{% extends 'baseusuario.html' %}
+
+{% block enderecosencontradosdoacoes %}
+	<h1 style="position: relative; color: brown; font-family: Arial"> ETAPA 1/2 &raquo&raquo; </h1> 
+	
+	<div style="position: absolute" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
+		<h2 style="color: brown">Instituições cadastradas em nosso sistema</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">ID:</td>
+					<td style="border: 1px solid;">Nome:</td>
+					<td style="border: 1px solid;">Descrição:</td>
+					<td style="border: 1px solid;">Tipo:</td>
+				</tr>
+				{% for ins in ins %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{ins.id_ti}}</td>
+					<td style="border: 1px solid;">{{ins.nome}}</td>
+					<td style="border: 1px solid;">{{ins.descricao}}</td>
+					<td style="border: 1px solid;">{{ins.tipo_i}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+	<div class="col-md-6 col-md-offset-2">
+
+{% endblock %}

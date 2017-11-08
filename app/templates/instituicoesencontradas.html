@@ -5,17 +5,13 @@
 		<h2 style="color: brown">Instituições  encontradas</h2>
 			<table style="border: 1px solid;">
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">ID:</td>
 					<td style="border: 1px solid;">Nome:</td>
 					<td style="border: 1px solid;">Descrição:</td>
-					<td style="border: 1px solid;">Tipo:</td>
 				</tr>
-				{% for tipo_i in tipo_i %}
+				{% for ins in ins %}
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">{{tipo_i.id_i}}</td>
-					<td style="border: 1px solid;">{{tipo_i.nome}}</td>
-					<td style="border: 1px solid;">{{tipo_i.descricao}}</td>
-					<td style="border: 1px solid;">{{tipo_i.tipo_i}}</td>
+					<td style="border: 1px solid;"><a href="/buscandoinstituicaodoacao/{{ins.id_i}}">{{ins.nome}}</a></td>
+					<td style="border: 1px solid;">{{ins.descricao}}</td>
 					
 			
 				</tr>

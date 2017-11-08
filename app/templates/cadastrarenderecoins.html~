@@ -1,10 +1,10 @@
-{% extends 'baseinstituicao.html' %}
+{% extends 'base.html' %}
 
 {% block cadastrarendereco %}
 
-        <div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
+        <div style="position: relative;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
 	<div class="col-md-6 col-md-offset-2">
-		<h2 style="color: brown">Cadastro de Endereço</h2>
+		<h2 style="color: brown">Cadastrar Endereço</h2>
 		<form action="{{url_for('cadastroendereco')}}" method="POST">
 		
 		{{ form.csrf_token }}

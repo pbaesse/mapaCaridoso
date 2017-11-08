@@ -1,8 +1,8 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from app import app, db, lm
 from flask_login import login_user, logout_user, current_user
-from app.models.forms import LoginForm, CadastroUser, CadastroInstituicao, CadastroEnderecoIns, InformarDoacao, DigitandoInstituicao
-from app.models.tables import Usuario, Instituicao, EnderecoInstituicao, Doacao
+from app.models.forms import LoginForm, CadastroUser, CadastroInstituicao, CadastroEnderecoIns, InformarDoacao, DigitandoInstituicao, DigitandoInstituicaoDoacao, AvaliarInstituicao, DenunciarInstituicao
+from app.models.tables import Usuario, Instituicao, EnderecoInstituicao, Doacao, Avaliacao, Denuncia, TipoInstituicao, TagsDoacao
 
 #<----- logar usuário e instituição e deslogar ------->
 
@@ -22,6 +22,7 @@ def loginu():
 		if user and user.password == form.password.data:
 			login_user(user)
 			flash("	Olá, "+user.nome+"!")
+			session['nome_u']=user.nome;
 			return render_template('paginainicialusu.html')
 		else:
 			flash("Login inválido!")
@@ -36,7 +37,9 @@ def logini():
 		if instituicao and instituicao.password == form.password.data:
 			login_user(instituicao)
 			flash("	Olá, "+instituicao.nome+"!")
+			session['nome_i']=instituicao.nome;
 			return render_template('paginainicialins.html')
+			
 		else:
 			flash("Login inválido!")
 	return render_template('logini.html',
@@ -124,8 +127,10 @@ def cadastroi():
 				i = Instituicao(nome, descricao, id_u, tipo_i, password, username)
 				db.session.add(i)
 				db.session.commit()
+				instituicao = Instituicao.query.filter_by(username=form.username.data).first()
+				login_user(instituicao)
 
-			return redirect(url_for("index"))
+			return redirect(url_for("cadastrarenderecoins"))
 	return render_template('index.html',
 					form=form)
 
@@ -171,7 +176,15 @@ def cadastroendereco():
 
 @app.route("/informardoacaoins")
 def informardoacaoins():
+	doa = TagsDoacao.query.all()
 	form = InformarDoacao()
+	return render_template('informardoacaoinstituicao.html', 
+						          form=form, doa=doa)
+
+@app.route("/informardoacaoinstituicao/<int:id>")
+def informardoacaoinstituicao(id):
+	form = InformarDoacao()
+	session['id_td']=id
 	return render_template('informardoacaoins.html', 
 						          form=form)
 
@@ -206,6 +219,12 @@ def doacoescadastradas():
 	ins = current_user.id_i
 	doacao = Doacao.query.filter_by(id_i=ins).all()
 	return render_template("doacoescadastradas.html", doacao=doacao)
+
+@app.route("/avaliacoesfeitas")
+def avaliacoesfeitas():
+	ins = current_user.id_i
+	ava = Avaliacao.query.filter_by(id_i=ins).all()
+	return render_template("avafeitas.html", ava=ava)
 #<--------------- Instituições --------------------------->
 
 #<------------------ Usuário ----------------------------->
@@ -219,19 +238,101 @@ def digitandoinstituicao():
 	form = DigitandoInstituicao()
 	return render_template('digitandoinstituicao.html', form=form)
 
-@app.route("/buscandoinstituicao", methods=['GET', 'POST'])
-def buscandoinstituicao():
-	form = DigitandoInstituicao()
+@app.route("/buscandoinstituicao/<int:id>", methods=['GET'])
+def buscandoinstituicao(id):
+	ins = Instituicao.query.filter_by(tipo_i=id).all()
+	return render_template("instituicoesencontradas.html", ins=ins)
+
+@app.route("/doacoesencontradas")
+def doacoesencontradas():
+	doacoes = Doacao.query.all()
+	return render_template("doacoesencontradas.html", doacoes=doacoes)
+
+@app.route("/tiposencontrados")
+def tiposencontrados():
+	tipos = TipoInstituicao.query.all()
+	return render_template("digitandoinstituicao.html", tipos=tipos)
+
+@app.route("/buscandoinstituicaodoacao/<int:id>", methods=['GET'])
+def buscandoinstituicaodoacao(id):
+	ins = Instituicao.query.filter_by(id_i=id).first()	
+	onde = EnderecoInstituicao.query.filter_by(id_i=id).first()
+	return render_template("instituicoesencontradasdoacoes.html", ins=ins, onde=onde)
+
+@app.route("/buscarendereco/", methods=['GET'])
+def buscarendereco():
+	id_i = EnderecoInstituicao.query.all()
+	return render_template("enderecosencontradosdoacoes.html", id_i=id_i)
+			
+
+@app.route("/avaliarins/", methods=['GET', 'POST'])
+def avaliarins():
+	usu = current_user.id_u
+	form = AvaliarInstituicao()
+	ins = Instituicao.query.all()
+	return render_template('avaliarins.html', ins=ins, form=form)
+
+@app.route("/avaliarinst/<int:id>", methods=['GET'])
+def avaliarinst(id):
+	usu = current_user.id_u
+	form = AvaliarInstituicao()
+	session['id_i']=id
+	ins = Instituicao.query.all()
+	return render_template('avaliarinstituicao.html', ins=ins, form=form)
+
+@app.route("/avaliarinstituicao/", methods=['GET', 'POST'])
+def avaliarinstituicao():
+	form = AvaliarInstituicao()
+	usu = current_user.id_u
 	if form.validate_on_submit():
 		if request.method == "POST":
-			tipo = request.form.get("tipo")
+			pontuacao = request.form.get("pontuacao")
+			comentario = request.form.get("comentario")
+			data = request.form.get("data")
+			id_u = usu		
+			id_i = session['id_i']
+	
+			if pontuacao and comentario and data and id_u and id_i:
+				ava = Avaliacao(pontuacao, comentario, data, id_u, id_i)
+				db.session.add(ava)
+				db.session.commit()
+			
+			return redirect(url_for("avaliarinstituicao"))
+	return render_template('paginainicialusu.html', form = form)		
 
-			if tipo:
-				tipo = Instituicao.query.filter_by(tipo_i=tipo).all()
-				return render_template("instituicoesencontradas.html", tipo=tipo)
-			return redirect(url_for("paginainicialusu"))
-	return render_template('paginainicialusu.html',form=form)
+@app.route("/denunciarins", methods=['GET', 'POST'])
+def denunciarins():
+	usu = current_user.id_u
+	form = DenunciarInstituicao()
+	ins = Instituicao.query.all()
+	return render_template('denunciarins.html', ins=ins, form=form)
 
+@app.route("/denunciarinst/<int:id>", methods=['GET'])
+def denunciarinst(id):
+	usu = current_user.id_u
+	form = DenunciarInstituicao()
+	session['id_i']=id
+	ins = Instituicao.query.all()
+	return render_template('denunciarinstituicao.html', ins=ins, form=form)
+
+@app.route("/denunciarinstituicao", methods=['GET', 'POST'])
+def denunciarinstituicao():
+	form = DenunciarInstituicao()
+	usu = current_user.id_u
+	if form.validate_on_submit():
+		if request.method == "POST":
+			id_u = usu
+			id_i = session['id_i']
+			descricao = request.form.get("descricao")
+			data = request.form.get("data")		
+
+			if id_u and id_i and descricao and data:
+				den = Denuncia(id_u, id_i, descricao, data)
+				db.session.add(den)
+				db.session.commit()
+			
+			return redirect(url_for("denunciarinstituicao"))
+	return render_template('paginainicialusu.html', form = form)		
 #<------------------ Usuário ----------------------------->
 @app.route("/index")
 @app.route("/")

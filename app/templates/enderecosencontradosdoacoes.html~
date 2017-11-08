@@ -1,0 +1,38 @@
+{% extends 'baseusuario.html' %}
+
+{% block enderecosencontradosdoacoesfinal %} 
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-2 main">
+		<h2 style="color: brown">Endereços cadastrados em nosso sistema</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Nome:</td>
+					<td style="border: 1px solid;">Rua:</td>
+					<td style="border: 1px solid;">Número:</td>
+					<td style="border: 1px solid;">Bairro:</td>
+					<td style="border: 1px solid;">CEP:</td>
+					<td style="border: 1px solid;">Cidade:</td>
+					<td style="border: 1px solid;">Estado:</td>
+					<td style="border: 1px solid;">Pais:</td>
+					<td style="border: 1px solid;">Latitude:</td>
+					<td style="border: 1px solid;">Longitude:</td>
+				</tr>
+				{% for id_i in id_i %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;"><a href="/buscandoinstituicaodoacao/{{doacoes.id_i}}">{{id_i.instituicao}}</a></td>
+					<td style="border: 1px solid;">{{id_i.rua}}</td>
+					<td style="border: 1px solid;">{{id_i.numero}}</td>
+					<td style="border: 1px solid;">{{id_i.bairro}}</td>
+					<td style="border: 1px solid;">{{id_i.cep}}</td>
+					<td style="border: 1px solid;">{{id_i.cidade}}</td>
+					<td style="border: 1px solid;">{{id_i.estado}}</td>
+					<td style="border: 1px solid;">{{id_i.pais}}</td>
+					<td style="border: 1px solid;">{{id_i.latitude}}</td>
+					<td style="border: 1px solid;">{{id_i.longitude}}</td>
+			
+				</tr>
+				{% endfor %}
+			</table>
+	</div>
+
+	
+{% endblock %}
