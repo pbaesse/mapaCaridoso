@@ -2,20 +2,18 @@
 
 {% block doacoesencontradas %}
 	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
-		<h2 style="color: brown">Doações Solicitadas em nosso sistema</h2>
+		<h2 style="color: brown">Buscar instituição - Doações cadastradas</h2>
 			<table style="border: 1px solid;">
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">ID:</td>
-					<td style="border: 1px solid;">Descrição:</td>
-					<td style="border: 1px solid;">Data:</td>
-					<td style="border: 1px solid;">Nome:</td>
-					<td style="border: 1px solid;">TAG:</td>
+					<td style="border: 1px solid;">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+					<td style="border: 1px solid;">Nome</td>
+					<td style="border: 1px solid;">TAG</td>
 				</tr>
 				{% for doacoes in doacoes %}
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">{{doacoes.id_d}}</td>
 					<td style="border: 1px solid;">{{doacoes.descricao}}</td>
-					<td style="border: 1px solid;">{{doacoes.data}}</td>
+					<td style="border: 1px solid;">{{doacoes.dia}}/{{doacoes.mes}}/{{doacoes.ano}}</td>
 					<td style="border: 1px solid;"><a href="/buscandoinstituicaodoacao/{{doacoes.id_i}}">{{doacoes.instituicao}}</a></td>
 					<td style="border: 1px solid;">{{doacoes.tag}}</td>
 				</tr>

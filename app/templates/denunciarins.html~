@@ -2,19 +2,17 @@
 
 {% block denunciarinstituicao %}
 
-<div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
+<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
 
-	<h2 style="color: brown">Instituições cadastradas em nosso sistema</h2>
+	<h2 style="color: brown">Denunciar instituição - Instituições cadastradas</h2>
 			<table style="border: 1px solid;">
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">ID:</td>
 					<td style="border: 1px solid;">Nome:</td>
 					<td style="border: 1px solid;">Descrição:</td>
 					<td style="border: 1px solid;">Tipo:</td>
 				</tr>
 				{% for ins in ins %}
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">{{ins.id_i}}</td>
 					<td style="border: 1px solid;"><a href="/denunciarinst/{{ins.id_i}}">{{ins.nome}}</a></td>
 					<td style="border: 1px solid;">{{ins.descricao}}</td>
 					<td style="border: 1px solid;">{{ins.tipo}}</td>

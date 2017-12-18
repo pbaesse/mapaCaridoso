@@ -5,15 +5,17 @@
 		<h2 style="color: brown">Avaliações</h2>
 			<table style="border: 1px solid;">
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">Pontuação:</td>
-					<td style="border: 1px solid;">Comentário:</td>
-					<td style="border: 1px solid;">Data:</td>
+					<td style="border: 1px solid"> Doador</td>
+					<td style="border: 1px solid;">Pontuação</td>
+					<td style="border: 1px solid;">Comentário</td>
+					<td style="border: 1px solid;">Data</td>
 				</tr>
 				{% for ava in ava %}
 				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{ava.usuario}}</td>
 					<td style="border: 1px solid;">{{ava.pontuacao}}</td>
 					<td style="border: 1px solid;">{{ava.comentario}}</td>
-					<td style="border: 1px solid;">{{ava.data}}</td>
+					<td style="border: 1px solid;">{{ava.dia}}/{{ava.mes}}/{{ava.ano}}</td>
 				</tr>
 				{% endfor %}
 			</table>

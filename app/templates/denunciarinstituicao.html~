@@ -3,23 +3,11 @@
 {% block denunciarins %}
 
 <div class="col-md-6 col-md-offset-2">
-		<h2 style="color: brown">Denunciar Instituição</h2>
+		<h2 style="color: brown">Denunciar Instituição - {{session['nome_i']}}</h2>
 		<form action="{{url_for('denunciarinstituicao')}}" method="POST">
 		
 		{{ form.csrf_token }}
 		<div class="form-group">
-			<label style="color: brown">ID da instituição:</label>
-			{{form.id_i(class="form-control")}}	
-			{%if form.errors.id_i%}
-			<div class="alert alert-danger" role="alert">
-			<ul>
-			{% for e in form.errors.id_i %}
-				<li>{{e}}</li>
-			{% endfor %}
-			</div>
-			{%endif%}
-		</ul>
-		</div><div class="form-group">
 			<label style="color: brown">Descrição:</label>
 			{{form.descricao(class="form-control")}}	
 			{%if form.errors.descricao%}
@@ -32,19 +20,6 @@
 			{%endif%}
 		</ul>
 		</div>
-		<div class="form-group">
-			<label style="color: brown">Data:</label>
-			{{form.data(class="form-control")}}	
-			{%if form.errors.data%}
-			<div class="alert alert-danger" role="alert">
-			<ul>
-			{% for e in form.errors.data %}
-				<li>{{e}}</li>
-			{% endfor %}
-			</div>
-			{%endif%}
-		</ul>
-		<p></p>
 		<div>
 			<button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Informar</button>
 		</div>

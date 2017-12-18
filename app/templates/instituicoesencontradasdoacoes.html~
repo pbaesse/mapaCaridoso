@@ -1,15 +1,82 @@
 {% extends 'baseusuario.html' %}
 
 {% block instituicoesencontradasdoacoes %}
-	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
-		 <h2  style="color: brown" class="featurette-heading">Nome: <span class="text-muted">{{ins.nome}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Descrição: <span class="text-muted">{{ins.descricao}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Tipo: <span class="text-muted">{{ins.tipo}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Estado: <span class="text-muted">{{onde.estado}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Cidade: <span class="text-muted">{{onde.cidade}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Bairro: <span class="text-muted">{{onde.bairro}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Rua: <span class="text-muted">{{onde.rua}}</span></h2>
-		 <h2  style="color: brown" class="featurette-heading">Número: <span class="text-muted">{{onde.numero}}</span></h2>
+
+	<div class="container marketing">
+	<center>
+	<img class="img-circle" src="https://st2.depositphotos.com/5266903/8129/v/950/depositphotos_81291460-stock-illustration-company-icon.jpg" alt="Generic placeholder image" width="200" height="200">
+	  <h3>Instituição especializada em {{ins.tipo}}</h3>
+	  <h3 style="color: brown">{{ins.nome}}</h3></br>
+	<div class="row">
+	<div class="col-lg-3">
+ 	<img class="img-circle" src="https://thumbs.dreamstime.com/b/%C3%ADcone-isolado-papel-da-prancheta-89234556.jpg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Descrição</h4>		
+	<h5>{{ins.descricao}}</h5>
 	</div>
+	<div class="col-lg-2">
+	<img class="img-circle" src="https://thumbs.dreamstime.com/b/%C3%ADcone-do-banco-da-rua-estilo-liso-82761242.jpg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Rua</h4>	
+	<h5>{{end.rua}}, {{end.bairro}}, {{end.cidade}}</h5>
+	</div>
+	<div class="col-lg-2">
+	<img src="http://www.clker.com/cliparts/j/j/T/U/G/2/go-home-md.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Número</h4>	
+	<h5>{{end.numero}}</h5>
+	</div>
+	<div class="col-lg-3">
+	<img src="http://pt.seaicons.com/wp-content/uploads/2016/07/Globe-Connected-icon.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Estado</h4>	
+	<h5>{{end.estado}}, {{end.pais}}</h5>
+	</div>
+	</br></br></br></br></br></br></br></br></br></br>
+	
+	<center>
+	<div class="col-lg-6" style="left:340px;">
+	<hr style=" border-color: gray; box-sizing:border-box; width:100% "></hr>
+	<img src="http://www.wiserh.com.br/files/icones_solucoes/icon5.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Avaliações</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid"> Doador</td>
+					<td style="border: 1px solid;">Pontuação</td>
+					<td style="border: 1px solid;">Comentário</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for ava in ava %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{ava.usuario}}</td>
+					<td style="border: 1px solid;">{{ava.pontuacao}}</td>
+					<td style="border: 1px solid;">{{ava.comentario}}</td>
+					<td style="border: 1px solid;">{{ava.dia}}/{{ava.mes}}/{{ava.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table></br>
+	<img src="https://www.youtube.com/yt/about/media/svgs/icons/policies/report-privacy-violation-icon.svg" alt="Generic placeholder image" width="70" height="70">
+
+	<h4 style="color: brown">Denúncias</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for den in den %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{den.descricao}}</td>
+					<td style="border: 1px solid;">{{den.dia}}/{{den.mes}}/{{den.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table>
+	</br>
+	<a class="btn btn-default" href="/denunciarinst/{{ins.id_i}}" role="button" style="background-color: #FFDEAD; color: brown">Denunciar</a>
+  	<a class="btn btn-default" href="/avaliarinst/{{ins.id_i}}" role="button" style="background-color: #FFDEAD; color: brown">Avaliar</a>
+	</center>
+	</div>
+		</br></br>
+	</div>
+	</center>
+	</div>
+	
 	
 {% endblock %}

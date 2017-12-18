@@ -1,0 +1,22 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
+		<h2 style="color: brown">Usuários cadastrados</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Nome:</td>					
+					<td style="border: 1px solid;">Email:</td>
+					<td style="border: 1px solid;">Tipo:</td>
+				</tr>
+				{% for usu in usu %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;"><a href="/visualizardoadores/{{usu.id_u}}">{{usu.nome}}</a></td>
+					<td style="border: 1px solid;">{{usu.email}}</td>
+					<td style="border: 1px solid;">{{usu.tipo}}</td>
+				</tr>
+	
+				{% endfor %}
+			</table>
+	</div>
+{% endblock %}

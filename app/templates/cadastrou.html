@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block cadastrou %}
-<div class="col-md-4 col-md-offset-3">
+<div class="col-md-4 col-md-offset-3" style="left:100px">
 <h2 style="color: brown">Cadastro de Doador</h2>
 <form action="{{url_for('cadastrou')}}" method="POST">
 		
@@ -20,7 +20,12 @@
 		</ul>
 		</div>
 		<div class="form-group">
-			<label style="color: brown">Password:</label>
+			<label style="color: brown">Senha:</label>
+			<input class="form-control" type="password" name="senha" id="senha" onkeyup="javascript:verifica()"/>
+			<table id="mostra"></table>
+		</div>
+		<div class="form-group">
+			<label style="color: brown">Digite novamente a senha:</label>
 			{{form.password(class="form-control", praceholder="Digite o password que você utilizará")}}	
 			{%if form.errors.password%}
 			<div class="alert alert-danger" role="alert">
@@ -57,13 +62,8 @@
 		</div>
 		<div>
 			<label style="color: brown">Tipo:</label>
-			<ul style="color: brown; border: 1px solid; border-radius: 10px">
-				<li>1 - Anônimo</li>
-				<li>2 - Empresa Privada</li>
-				<li>3 - Empresa Pública</li>
-				<li>4 - Autônomo</li>
-			</ul>
-			{{form.tipo_u(class="form-control", praceholder="Digite o tipo em que se enquadra")}}	
+			{{form.tipo_u.label}} {{form.tipo_u}}
+	
 			{%if form.errors.tipo_u%}
 			<div class="alert alert-danger" role="alert">
 			<ul>

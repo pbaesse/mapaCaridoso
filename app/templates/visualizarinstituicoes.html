@@ -1,0 +1,96 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<div class="container marketing">
+	<center>	
+	  <img class="img-circle" src="https://icon-icons.com/icons2/865/PNG/512/Citycons_institution_icon-icons.com_67923.png" alt="Generic placeholder image" width="200" height="200">
+	<h4>Especializada em {{ins.tipo}}</h4>
+	  <h3 style="color: brown">{{ins.nome}}</h3></br>
+	<div class="row">
+	<div class="col-lg-2">
+ 	<img class="img-circle" src="https://thumbs.dreamstime.com/b/%C3%ADcone-isolado-papel-da-prancheta-89234556.jpg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Descrição</h4>		
+	<h5>{{ins.descricao}}</h5>
+	</div>
+	<div class="col-lg-2">
+	<img class="img-circle" src="http://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/User-Executive-Red-icon.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Username</h4>	
+	<h5>{{ins.username}}</h5>
+	</div>
+	<div class="col-lg-2">
+	<img class="img-circle" src="https://thumbs.dreamstime.com/b/%C3%ADcone-do-banco-da-rua-estilo-liso-82761242.jpg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Rua</h4>	
+	<h5>{{end.rua}}, {{end.bairro}}, {{end.cidade}}</h5>
+	</div>
+	<div class="col-lg-2">
+	<img src="http://www.clker.com/cliparts/j/j/T/U/G/2/go-home-md.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Número</h4>	
+	<h5>{{end.numero}}</h5>
+	</div>
+	<div class="col-lg-2">
+	<img src="http://pt.seaicons.com/wp-content/uploads/2016/07/Globe-Connected-icon.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Estado</h4>	
+	<h5>{{end.estado}}, {{end.pais}}</h5>
+	</div>
+	</br></br></br></br></br></br></br></br></br></br>
+	<div class="col-lg-5" style="left:400px">
+	<a href="/testando1/{{ins.id_i}}"><button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Excluir</button></a>
+	</div>
+	</div>
+	</center>
+	</div>			
+	<center>
+	<div class="col-lg-6" style="left:380px;">
+	<hr style=" border-color: gray; box-sizing:border-box; width:80% "></hr>
+	<img src="http://www.wiserh.com.br/files/icones_solucoes/icon5.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Avaliações</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid"> Doador</td>
+					<td style="border: 1px solid;">Pontuação</td>
+					<td style="border: 1px solid;">Comentário</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for ava in ava %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{ava.usuario}}</td>
+					<td style="border: 1px solid;">{{ava.pontuacao}}</td>
+					<td style="border: 1px solid;">{{ava.comentario}}</td>
+					<td style="border: 1px solid;">{{ava.dia}}/{{ava.mes}}/{{ava.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table></br>
+	<img src="http://www.icgroup.ge/admin/editor/uploads/images/Complete%20the%20Form%20icon.jpg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Doações solicitadas</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for doa in doa %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{doa.descricao}}</td>
+					<td style="border: 1px solid;">{{doa.dia}}/{{doa.mes}}/{{doa.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table></br>
+	<img src="https://www.youtube.com/yt/about/media/svgs/icons/policies/report-privacy-violation-icon.svg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Denúncias</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for den in den %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{den.descricao}}</td>
+					<td style="border: 1px solid;">{{den.dia}}/{{den.mes}}/{{den.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table></br>
+	</center>
+	</div>
+{% endblock %}

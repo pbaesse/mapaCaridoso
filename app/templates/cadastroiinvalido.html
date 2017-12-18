@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block cadastroi %}
+	<center>
+	<h2 style="color: red">CADASTRO INVÁLIDO. TENTE NOVAMENTE </h2>
+	<hr style="box-sizing:border-box; width:70%"></hr>
+	</center>
+	<div class="col-md-4 col-md-offset-3" style="left:100px">
+	<h2 style="color: brown">Cadastro de Instituição</h2>
+	<form action="{{url_for('cadastroi')}}" method="POST">
+		{{ form.csrf_token }}
+		<div class="form-group">
+			<label style="color : brown">Nome:</label>
+			{{form.nome(class="form-control")}}
+			{%if form.errors.nome%}	
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.nome %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>
+		<div class="form-group">		
+			<label style="color : brown">Descrição:</label>
+			{{form.descricao(class="form-control")}}	
+			{%if form.errors.descricao%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.descricao %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>
+		<div>
+			<label style="color: brown">Tipo:</label>
+			{{form.tipo_i.label}} {{form.tipo_i}}
+	
+			{%if form.errors.tipo_u%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.tipo_u %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>		
+		</br>	
+		<div class="form-group">
+			<label style="color : brown">Username:</label>
+			{{form.username(class="form-control")}}	
+			{%if form.errors.username%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.username %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+			</ul>
+		</div>	
+		<div class="form-group">
+			<label style="color : brown">Password:</label>
+			{{form.password(class="form-control")}}	
+			{%if form.errors.password%}
+			<div class="alert alert-danger" role="alert">
+			<ul>
+			{% for e in form.errors.password %}
+				<li>{{e}}</li>
+			{% endfor %}
+			</div>
+			{%endif%}
+		</div>
+		<div>
+			<button type="submit" class="btn btn-default" style="background-color: #FFDEAD; color: brown">Pŕoximo &raquo&raquo;</button>
+		</div>
+</form>
+
+</div>
+{% endblock %}

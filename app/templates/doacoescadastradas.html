@@ -2,18 +2,19 @@
 
 {% block doacoescadastradas %}
 	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
-		<h2 style="color: brown">Doações solicitadas</h2>
+		<h2 style="color: brown">Visualizar doações - Doações solicitadas</h2>
 			<table style="border: 1px solid;">
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">Descrição:</td>
-					<td style="border: 1px solid;">Data:</td>
-					<td style="border: 1px solid;">TAG:</td>
+					<td style="border: 1px solid;">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+					<td style="border: 1px solid;">TAG</td>
 				</tr>
 				{% for doacao in doacao %}
 				<tr style="border: 1px solid;">
 					<td style="border: 1px solid;">{{doacao.descricao}}</td>
-					<td style="border: 1px solid;">{{doacao.data}}</td>
+					<td style="border: 1px solid;">{{doacao.dia}}/{{doacao.mes}}/{{doacao.ano}}</td>
 					<td style="border: 1px solid;">{{doacao.tag}}</td>
+					<td style="border: 1px solid;"><a href="/excluirdoacoes1/{{doacao.id_d}}"><img class="img-circle" src="https://images.onlinelabels.com/images/clip-art/molumen/molumen_red_round_error_warning_icon.png" alt="Generic placeholder image" width="20" height="20"></a></td>
 				</tr>
 				{% endfor %}
 			</table>

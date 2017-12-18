@@ -1,0 +1,13 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<center>
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-2 main">
+	<h2 style="color: brown">Usuário excluído com sucesso do sistema</h2>
+	<div class="col-lg-5" style="left:2750px">
+ 	<img src="https://cdn.shopify.com/s/files/1/1061/1924/files/Hugging_Face_Emoji_2028ce8b-c213-4d45-94aa-21e1a0842b4d_large.png?15202324258887420558" alt="Generic placeholder image" width="200" height="200"></br></br>
+	</div>	</br></br></br></br></br></br></br></br></br></br>
+	<h3><a href="/paginainicialadm"> Voltar à pagina inicial</h3>		
+	</div>
+	
+{% endblock %}

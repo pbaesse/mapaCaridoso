@@ -30,11 +30,48 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script type="text/javascript">
-		function adiciona(){
-			document.teste.campo1.value += menu.value;
-			}
+	<script>	
+    {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419, -122.1419)])}}
 	</script>
+	<script>	
+	function verifica(){
+		senha = document.getElementById("senha").value;
+		forca=0;
+		mostra = document.getElementById("mostra");
+		if((senha.length>=4)&&(senha.length<=7)){
+			forca+=10;
+		}else if(senha.length>7){
+			forca+=25;
+		}if (senha.match(/[a-z]+/)){
+			forca+=10;	
+		}if(senha.match(/[A-Z]+/)){
+			forca+=20;
+		}if(senha.match(/d+/)){
+			forca+=20;
+		}if(senha.match(/W+/)){
+			forca+=25;
+		}
+		return mostra_res();
+	}
+	function mostra_res(){
+		if(forca<30){
+			mostra.innerHTML = '<tr><td bgcolor="red" width="'+forca+'"></td><td>Fraca</td></tr>';
+		}else if((forca>=30) && (forca<60)){
+			mostra.innerHTML = '<tr><td bgcolor="yellow" width="'+forca+'"></td><td>Justa</td></tr>';
+		}else if((forca>=60) && (forca<85)){
+			mostra.innerHTML = '<tr><td bgcolor="blue" width="'+forca+'"></td><td>Forte</td></tr>';
+		}else{
+			mostra.innerHTML = '<tr><td bgcolor="green" width="'+forca+'"></td><td>Excelente</td></tr>';
+		}
+	}
+	</script>
+
+	<style>
+	       #map {
+		height: 400px;
+		width: 100%;
+	       }
+    	</style>
   </head>
 
   <body>
@@ -45,18 +82,24 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
       
 	<p>   <p>
-	<div class="alert alert-warning">
-		{% with messages = get_flashed_messages() %}
-		  {% if messages %}
-		    <ul class=flashes>
-		    {% for message in messages %}
-		      <li>{{ message }}</li>
-		    {% endfor %}
-		    </ul>
-		  {% endif %}
-		{% endwith %}
-	</div>
+	
       <!-- Jumbotron -->
+	<nav style="position:relative; background-color: brown; border: transparent; border-radius:20px" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">		
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+		<li><a style="color: #FFDEAD" href="{{url_for('qualcadastro')}}">Cadastrar</a></li>
+		<li> <hr style=" transform: rotate(90deg); width: 30px; "></li>
+			{% if current_user.is_authenticated %}
+			<li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
+			{% else %}
+			<li><a style="color: #FFDEAD" href="{{url_for('quallogin')}}">Acessar</a></li>
+			{% endif %}
+          </ul>
+        </div>
+      </div>
+	<a href="https://github.com/pbaesse/mapaCaridoso"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
 	<div class="jumbotron" style="background-color: brown">
 		<img src="../static/images/tst.png" id= "tst" height="150" width="200">
 		<p> </p>
@@ -67,16 +110,11 @@
 		<nav>
 		  <ul class="nav nav-justified">
 		    <li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('index')}}">Mapa</a></li>
-		    <li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('qualcadastro')}}">Cadastrar</a></li>
-			{% if current_user.is_authenticated %}
-			<li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('logout')}}">Sair</a></li>
-			{% else %}
-			<li style="background-color : #FFDEAD" class="active"><a style="color : brown" href="{{url_for('quallogin')}}">Acessar</a></li>
-			{% endif %}
-		    <li style="background-color : #FFDEAD"><a style="color : brown" href="#">Sobre</a></li>
+		    <li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('sobre')}}">Sobre</a></li>
 		  </ul>
 		</nav>
 	</div>
+    </nav>
 	<h1>  </h1>
 
       <!-- Example row of columns -->
@@ -85,6 +123,7 @@
 	{% endblock %}
 
       <!-- Login -->	
+
 
 	{% block quallogin %}
 	{% endblock %}
@@ -111,16 +150,17 @@
 
 	</div> <!-- /container -->
 	<h1>  </h1>
+	<div class="container">
 	<div class="masthead">
 		<nav>
 		  <ul class="nav nav-justified">
-		    <li style="background-color : brown"><a style="color : brown" href="#"></a></li>
-		    <li style="background-color : brown"><a style="color : brown" href="#"></a></li>
-		    <li style="background-color : brown"><a style="color : brown" href="#"></a></li>
+			<li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('contatogeral')}}">Contato geral</a></li>
+ 			<li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('sobre')}}">Sobre</a></li>
+			<li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('mapacaridoso')}}"> Mapa Caridoso © 2016-2017</a></li>
 		  </ul>
 		</nav>
 	</div>
-	
+	</div>
 	<p>   <p>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>

@@ -1,56 +1,105 @@
-{% extends 'base.html' %} 
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-{% block content %}
-	<div class="row">
-		<div class="col-lg-4">
-		  <h2   style="color : brown">Por que doar?</h2>
-		  	<p>A ideia da doação é uma forma de devolver a sociedade um pouco do que se consquistou,
-			seja de forma material ou sentimental, investindo em iniciativas que possam de alguma
-			forma mudar ou até mesmo salvar vidas. Diversas pessoas estão cada vez mais engajadas
-			nesta causa. Seja qual for a motivação, a doação é um ato grandioso que envolve diversos
-			sentimentos entre as partes da ação. O final de ano é uma época em que as pessoas costumam
-			fazer seus balanços pessoais: o que fizeram, o que deveriam ou não ter feito, mas o mais
-			importate é O QUE AINDA SE PODE FAZER? E você, já fez sua doação hoje?"</br></br>
-			link: http://www.acolhida.org.br/por-que-doar/</p>
-		</div>
-		<div class="col-lg-4">
-		  <h2   style="color : brown">Como doar através de nosso site?</h2>
-		  	<p>Nosso site é voltado para o cadastramento de instituições para que sua localização
-				 apareça em nosso mapa e assim, com esta informação, nossos visitantes e doadores possam
-				 doar de forma direta, no caso, doações de roupas, calçados, comidas, brinquedos, entre
-				 outros e para que possam tambem se informar como e onde doar sangue ou orgâos. Caso não
-				 possa se deslocar até o ponto, temos a possibilidade de cadastramento de doadores, para
-				 que possa doar dinheiro através de nosso site, para o lugar que quiser, desde que esteja
-				 dentro de nosso mapa.</p>
-	       </div>
-		<div class="col-lg-4">
-		  <h2  style="color : brown"> E quem irá ganhar com a minha doação?</h2>
-		  	<p>"Aprendi, outro dia que perdoar é a junção de "per" com "doar".
-				Doar é mais do que dar.
-				Doar é a entrega total do outro.
-				O prefixo "per" que tem várias acepções,
-				indica movimento no sentido "de"
-				ou em "direção" a ou "através"
-				ou "para" etimologicamente falando,
-				portanto, perdoar, quer dizer doar ao
-				outro a possibilidade de que ele possa amar,
-				possa doar-se.
-				Não apenas quem perdoa que se
-				"doa através do outro".
-				Perdoar implica abrir possibilidades de
-				amor para quem foi perdoado,
-				através da doação oferecida
-				por quem foi agravado.
-				Perdoar é a única forma de facilitar
-				ao outro a própria salvação.
+    <title>Mapa Caridoso</title>
 
-				Doar é mais do que dar: é a entrega total ...
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/mp1.css') }}">
 
-				Perdoar é doar o amor,
-				é permitir que a pessoa objeto do perdão
-				possa também devolver um amor que,
-				até então, só negara ..." Artur da Távola</p>
-	       </div>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script>	
+
+	</script>
+	<style>
+	       #map {
+		height: 400px;
+		width: 100%;
+	       }
+    	</style>
+    {{trdmap.js}}
+  </head>
+
+  <body>
+	
+    <div class="container">
+	</hr>
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      
+	<p>   <p>
+	
+      <!-- Jumbotron -->
+	<nav style="position:relative; background-color: brown; border: transparent; border-radius:20px" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">		
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+		<li><a style="color: #FFDEAD" href="{{url_for('qualcadastro')}}">Cadastrar</a></li>
+		<li> <hr style=" transform: rotate(90deg); width: 30px; "></li>
+			{% if current_user.is_authenticated %}
+			<li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
+			{% else %}
+			<li><a style="color: #FFDEAD" href="{{url_for('quallogin')}}">Acessar</a></li>
+			{% endif %}
+          </ul>
+        </div>
+      </div>
+	<a href="https://github.com/pbaesse/mapaCaridoso"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+	<div class="jumbotron" style="background-color: brown">
+		<img src="../static/images/tst.png" id= "tst" height="150" width="200">
+		<p> </p>
+		<h1 style="color: #FFDEAD">Mapa Caridoso</h1>
+		<p class="lead" style="color: #FFDEAD">A solidariedade é contagiosa. Contagie e se deixe contagiar!</p>	
 	</div>
-{% endblock %}
-
+	<div class="masthead">
+		<nav>
+		  <ul class="nav nav-justified">
+		    <li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('index')}}">Mapa</a></li>
+		    <li style="background-color : #FFDEAD"><a style="color : brown" href="{{url_for('sobre')}}">Sobre</a></li>
+		  </ul>
+		</nav>
+	</div>
+    </nav>
+	<h1>  </h1>
+    {{trdmap.html}}
+	</div> <!-- /container -->
+	<h1>  </h1>
+	<div class="container">
+	<div class="masthead">
+		<nav>
+		  <ul class="nav nav-justified">
+		    <li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('contatogeral')}}">Contato geral</a></li>
+ 			<li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('sobre')}}">Sobre</a></li>
+		    <li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('mapacaridoso')}}"> Mapa Caridoso © 2016-2017</a></li>
+		  </ul>
+		</nav>
+	</div>
+	</div>
+	<p>   <p>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'baseadm.html' %}
+
+{% block content %} 
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
+		<h2 style="color: brown">Denúncias realizadas pelos doadores</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Instituição</td>
+					<td style="border: 1px solid;">Doador</td>
+					<td style="border: 1px solid;">Denuncia</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for den in den %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;"><a href="/visualizarinstituicoes/{{den.id_i}}">{{den.instituicao}}</a></td>
+					<td style="border: 1px solid;"><a href="/visualizardoadores/{{den.id_u}}">{{den.usuario}}</a></td>
+					<td style="border: 1px solid;">{{den.descricao}}</td>
+					<td style="border: 1px solid;">{{den.data}}</td>
+					<td style="border: 1px solid;"><a href="/excluirdenuncia/{{den.id_den}}"><img class="img-circle" src="https://images.onlinelabels.com/images/clip-art/molumen/molumen_red_round_error_warning_icon.png" alt="Generic placeholder image" width="20" height="20"></a></td>
+					</br>	
+				</tr>
+				{% endfor %}
+			</table>
+	</div>
+
+	
+{% endblock %}

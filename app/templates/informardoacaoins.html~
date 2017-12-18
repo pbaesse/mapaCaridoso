@@ -23,7 +23,7 @@
 		</div>
 		<div class="form-group">
 			<label style="color: brown">Data:</label>
-			{{form.data(class="form-control")}}	
+			{{form.data}}	
 			{%if form.errors.data%}
 			<div class="alert alert-danger" role="alert">
 			<ul>

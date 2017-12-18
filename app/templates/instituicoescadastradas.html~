@@ -1,0 +1,62 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
+		<h2 style="color: brown">Instituições cadastradas</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Nome</td>					
+					<td style="border: 1px solid;">Descricao</td>
+					<td style="border: 1px solid;">Tipo</td>
+				</tr>
+				{% for ins in ins %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;"><a href="/visualizarinstituicoes/{{ins.id_i}}">{{ins.nome}}</a></td>
+					<td style="border: 1px solid;">{{ins.descricao}}</td>
+					<td style="border: 1px solid;">{{ins.tipo}}</td>
+				</tr>
+	
+				{% endfor %}
+			</table>
+	<center>
+	<div class="col-lg-6" style="left:380px;">
+	<hr style=" border-color: gray; box-sizing:border-box; width:80% "></hr>
+	<img src="http://www.wiserh.com.br/files/icones_solucoes/icon5.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Avaliações</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid"> Doador</td>
+					<td style="border: 1px solid;">Pontuação</td>
+					<td style="border: 1px solid;">Comentário</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for ava in ava %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{ava.usuario}}</td>
+					<td style="border: 1px solid;">{{ava.pontuacao}}</td>
+					<td style="border: 1px solid;">{{ava.comentario}}</td>
+					<td style="border: 1px solid;">{{ava.dia}}/{{ava.mes}}/{{ava.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table></br>
+	<img src="http://www.icgroup.ge/admin/editor/uploads/images/Complete%20the%20Form%20icon.jpg" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Doações solicitadas</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for doa in doa %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{doa.descricao}}</td>
+					<td style="border: 1px solid;">{{doa.dia}}/{{doa.mes}}/{{doa.ano}}</td>
+					<td style="border: 1px solid;"><a href="/excluirdoacoes2/{{doa.id_d}}"><img class="img-circle" src="https://images.onlinelabels.com/images/clip-art/molumen/molumen_red_round_error_warning_icon.png" alt="Generic placeholder image" width="20" height="20"></a></td>
+				</tr>
+				{% endfor %}
+		</table></br>
+	</center>
+	</div>
+	</div>
+{% endblock %}

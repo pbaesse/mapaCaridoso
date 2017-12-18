@@ -1,33 +1,117 @@
-{% extends 'baseusuario.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-{% block paginainicialu %}
-                <div style="position: absolute;" class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main">
-	<h2 style="color: brown">Vamos utilizar nossos serviços?</h2>
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Quer achar alguma instituição específica? Venha conosco. ;)</h2>
-  	<p class="lead"><span class="text-muted">Para utilizar esse nosso serviço de buscar instituição, direcione-se ao menu ao lado e selecione a aba desejada, seja por "tipo específico", "doação solicitada" ou "endereço por ID" na parte direcionada à "Buscar Instituição". Você será redimencionado a uma nova tela e poderá realizar a sua busca.</span></p>
+    <title>Mapa Caridoso</title>
+
+    <!-- Bootstrap core CSS -->
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	    {{trdmap.js}}
+	<style>
+		table {
+		  border-collapse: collapse;
+		  width: 50em;
+		  border: 1px solid #666;
+		}
+		thead {
+		  background: #ccc url(https://www.devfuria.com.br/html-css/tabelas/bar.gif) repeat-x left center;
+		  border-top: 1px solid #a5a5a5;
+		  border-bottom: 1px solid #a5a5a5;
+		}
+		tr:hover {
+		  background-color: transparent;
+		  color: brown;
+		}
+		thead tr:hover {
+		  background-color: transparent;
+		  color: transparent;
+		}
+		tr:nth-child(even) {
+		    background-color: #FFDEAD;
+		}
+		th {
+		  font-weight: normal;
+		  text-align: left;
+		}
+		th, td {
+		  padding: 0.1em 1em;
+		}
+	       #map {
+		height: 560px;
+		width: 1050px;
+		border: 2px solid transparent;
+		border-radius: 20px;
+	       }
+	</style>
+
+  </head>
+
+  <body>
+
+    <nav style="position:relative; background-color: brown; border: 1px solid; border-color: brown" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	<img src="../static/images/tst.png" id= "tst" height="50" width="70">
+          <a style="color: #FFDEAD"class="navbar-brand" href="{{url_for('paginainicialusu')}}">Mapa Caridoso - Doador</a>
         </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" src = "https://comohacerpara.com/imgn/08155-buscar-personas-internet.jpg" alt="Generic placeholder image">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+		<li><a style="color: #FFDEAD" href="{{url_for('perfilusu')}}">{{ session['nome_u'] }}</a></li>
+            <li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
+          </ul>
         </div>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Deseja realizar alguma avaliação ou alguma denúncia de uma instituição específica? Fácil, fácil, precisa apenas seguir nossos passos. :D</h2>
-          <p class="lead"><span class="text-muted">Para realizar denúncia ou avaliação, direcione-se ao menu ao lado e selecione a aba "Denuncia de Instituição" ou "Avaliação de Instituição" na parte direcionada à "Realizar". Você será redimencionado a uma nova tela e poderá realizar a ação desejada.</span></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/800x800/auto" src = "http://www.s4rb.com/wp-content/uploads/2014/10/Happy-01.png" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-        </div>
+    </nav>
+	<div class="container-fluid">
+	      <div class="row" >
+		<div class="col-sm-3 col-md-2 sidebar" >
+		  <ul class="nav nav-sidebar" >
+			<li class="active"><a style="color: brown" href="{{url_for('paginainicialusu')}}">Mapa <span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<li class="active"><a style="color: brown" href="{{url_for('direcionamentosu')}}">Ajuda <span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<h4>Buscar Instituição</h4>
+			<li class="active"><a style="color: brown" href="{{url_for('tiposencontrados')}}">Tipo específico<span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('doacoesencontradas')}}">Doações solicitadas<span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('buscarendereco')}}">Endereço<span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color:brown; box-sizing:border-box; width:100%;  "></hr>
+			<h4>Realizar</h4>
+			<li class="active"><a style="color: brown" href="{{url_for('avaliarins')}}">Avaliação de instituição<span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('denunciarins')}}">Denúncia de instituição<span class="sr-only">(current)</span></a></li>			
+			<hr style=" border-color:brown; box-sizing:border-box; width:100%;  "></hr>
+		  </ul>
+		 </div>
+			    {{trdmap.html}}
+		</div>
+	</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="css/js/bootstrap.min.js"></script>
 	
-	<h1>  </h1>
-{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<div class="container marketing">
+	<center>	
+	  <img class="img-circle" src="http://www.socialbits.com.br/wp-content/uploads/2015/03/user.png" alt="Generic placeholder image" width="200" height="200">
+	<h4>Usuário {{usu.tipo}}</h4>
+	  <h3 style="color: brown">{{usu.nome}}</h3></br>
+	<div class="row">
+	<div class="col-lg-5">
+ 	<img class="img-circle" src="https://images.vexels.com/media/users/3/140138/isolated/preview/88e50689fa3280c748d000aaf0bad480--cone-redondo-e-mail-1-by-vexels.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Email</h4>		
+	<h5>{{usu.email}}</h5>
+	</div>
+	<div class="col-lg-5">
+	<img class="img-circle" src="http://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/User-Executive-Red-icon.png" alt="Generic placeholder image" width="70" height="70">
+	<h4 style="color: brown">Username</h4>	
+	<h5>{{usu.username}}</h5>
+	</div></br></br></br></br></br></br></br></br></br></br>
+	<div class="col-lg-5" style="left:400px">
+	<a href="/testando/{{usu.id_u}}"><button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Excluir</button></a>
+	</div>
+	</div><div class="col-lg-6" style="left:340px;">
+	<hr style=" border-color: gray; box-sizing:border-box; width:100% "></hr>
+	<h4 style="color: brown">Avaliações feitas</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Instituição</td>
+					<td style="border: 1px solid;">Pontuação</td>
+					<td style="border: 1px solid;">Comentário</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for ava in ava %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{ava.instituicao}}</td>
+					<td style="border: 1px solid;">{{ava.pontuacao}}</td>
+					<td style="border: 1px solid;">{{ava.comentario}}</td>
+					<td style="border: 1px solid;">{{ava.dia}}/{{ava.mes}}/{{ava.ano}}</td>
+				{% endfor %}
+		</table></br>
+
+	<h4 style="color: brown">Denúncias feitas</h4>
+
+		<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Instituição</td>
+					<td style="border: 1px solid;">Descrição</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for den in den %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">{{den.instituicao}}</td>
+					<td style="border: 1px solid;">{{den.descricao}}</td>
+					<td style="border: 1px solid;">{{den.dia}}/{{den.mes}}/{{den.ano}}</td>
+				</tr>
+				{% endfor %}
+		</table>
+
+</br>
+	</center>
+	</div>			
+
+		
+	
+	
+{% endblock %}

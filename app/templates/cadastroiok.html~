@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block cadastroi %}
+<div>
+	<center>
+<h1 style="color: brown">Cadastro concluído!</h1>
+<h2><a href="index">Voltar à página inicial.</a></h2>
+</div>
+
+{% endblock %}

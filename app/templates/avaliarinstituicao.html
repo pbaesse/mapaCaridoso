@@ -3,13 +3,13 @@
 {% block avaliarins %}
 
 <div class="col-md-6 col-md-offset-2">
-		<h2 style="color: brown">Avaliar Instituição</h2>
+		<h2 style="color: brown">Avaliar Instituição - {{ session['nome_i']}} </h2>
 		<form action="{{url_for('avaliarinstituicao')}}" method="POST">
 		
 		{{ form.csrf_token }}
 		<div class="form-group">
-			<label style="color: brown">Pontuação:</label>
-			{{form.pontuacao(class="form-control")}}	
+			{{form.pontuacao.label}}
+			{{form.pontuacao}}
 			{%if form.errors.pontuacao%}
 			<div class="alert alert-danger" role="alert">
 			<ul>
@@ -33,20 +33,7 @@
 			{%endif%}
 		</ul>
 		</div>
-		<div class="form-group">
-			<label style="color: brown">Data:</label>
-			{{form.data(class="form-control")}}	
-			{%if form.errors.data%}
-			<div class="alert alert-danger" role="alert">
-			<ul>
-			{% for e in form.errors.data %}
-				<li>{{e}}</li>
-			{% endfor %}
-			</div>
-			{%endif%}
-		</ul>
-		</div>
-		<p></p>
+		</br>
 		<div>
 			<button type="submit" class="btn btn-default"  style="background-color: #FFDEAD; color: brown">Informar</button>
 		</div>

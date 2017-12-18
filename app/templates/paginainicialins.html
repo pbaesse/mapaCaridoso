@@ -1,55 +1,114 @@
-{% extends 'baseinstituicao.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-{% block paginainiciali %}
-        <div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
-	<h2 style="color: brown">Vamos utilizar nossos serviços?</h2>
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Se necessita de uma doação, informe sua necessidade. Sua solicitação será atendida. ;)</h2>
-  	<p class="lead"><span class="text-muted">Para utilizar esse nosso serviço de solicitar uma doação, direcione-se ao menu ao lado e selecione a aba "Informar" na parte direcionada à "Doação". Você será redimencionado a uma nova tela e poderá realizar o seu desejo.</span></p>
+    <title>Mapa Caridoso</title>
+
+    <!-- Bootstrap core CSS -->
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style>
+		table {
+		  border-collapse: collapse;
+		  width: 50em;
+		  border: 1px solid #666;
+		}
+		thead {
+		  background: #ccc url(https://www.devfuria.com.br/html-css/tabelas/bar.gif) repeat-x left center;
+		  border-top: 1px solid #a5a5a5;
+		  border-bottom: 1px solid #a5a5a5;
+		}
+		tr:hover {
+		  background-color: transparent;
+		  color: brown;
+		}
+		thead tr:hover {
+		  background-color: transparent;
+		  color: transparent;
+		}
+		tr:nth-child(even) {
+		    background-color: #FFDEAD;
+		}
+		th {
+		  font-weight: normal;
+		  text-align: left;
+		}
+		th, td {
+		  padding: 0.1em 1em;
+		}
+		#map {
+			height: 560px;
+			width: 1050px;
+			border: 2px solid transparent;
+			border-radius: 20px;
+	       }
+	</style>
+    {{trdmap.js}}
+  </head>
+
+  <body>
+
+    <nav style="position:relative; background-color: brown; border: 1px solid; border-color: brown" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+	<img src="../static/images/tst.png" id= "tst" height="50" width="70">
+          <a style="color: #FFDEAD"class="navbar-brand" href="{{url_for('paginainicialins')}}">Mapa Caridoso - Instituição</a>
         </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" src = "http://gepac.com.br/wp-content/uploads/sendoumdoador.png" alt="Generic placeholder image">
+		
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+		<li><a style="color: #FFDEAD" href="{{url_for('perfilins')}}">{{ session['nome_i'] }}</a></li>
+            <li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
+          </ul>
         </div>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Deseja visualizar suas solicitações cadastradas? Venha conosco, será facílimo. :D</h2>
-          <p class="lead"><span class="text-muted">Para visualizar suas solicitações, direcione-se ao menu ao lado e selecione a aba "Visualizar" na parte direcionada à "Doação". Você será redimencionado a uma nova tela e poderá utilizar essa ação.</span></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" src = "http://www.hereisfree.com/content1/pic/zip02/b_1338794839046.jpg"alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Esqueceu qual o endereço que cadastrou no início do nosso sistema? Calma, vamos te ajudar. :)</h2>
-          <p class="lead"><span class="text-muted">Para visualizar seu endereço referente a sua instituição logada, direcione-se ao menu ao lado e selecione a aba "Endereço cadastrado". Você será redimencionado a uma nova tela e poderá visualizar seu endereço.</span></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7"></span></p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" src="https://image.freepik.com/vetores-gratis/trabalhador-com-duvidas_1012-193.jpg" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-	<div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Quer saber como os usuários estão te avaliando? Simbora. :P</h2>
-          <p class="lead"><span class="text-muted">Para visualizar suas avaliações, direcione-se ao menu ao lado e selecione a aba "Avaliações". Você será redimencionado a uma nova tela e poderá visualizá-las.</span></p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" src = "http://www.empregadorrh.com.br/media/catalog/product/cache/1/image/490x362/040ec09b1e35df139433887a97daa66f/a/v/avaliacao.png" alt="Generic placeholder image">
-        </div>
-      </div>
-
+    </nav>
+	<div class="container-fluid">
+	      <div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+		  <ul class="nav nav-sidebar">
+		    <li class="active"><a style="color: brown" href="{{url_for('paginainicialins')}}">Mapa <span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+		<li class="active"><a style="color: brown" href="{{url_for('direcionamentosi')}}">Ajuda <span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<h4>Doação</h4>
+		    <li><a style="color: brown" href="{{url_for('informardoacaoins')}}">Criar</a></li>
+		    <li><a style="color: brown" href="{{url_for('doacoescadastradas')}}">Visualizar</a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<li><a style="color: brown" href="{{url_for('avaliacoesfeitas')}}">Avaliações</a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+		  </ul>
+		  </ul>
+		 </div> 
+			    {{trdmap.html}}
+		</div>
+	</div>
 	
-	<h1>  </h1>
-{% endblock %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="css/js/bootstrap.min.js"></script>
+
+
+
+  </body>
+
+</html>
+

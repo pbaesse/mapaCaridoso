@@ -1,0 +1,27 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-3 main">
+		<h2 style="color: brown">Avaliações</h2>
+			<table style="border: 1px solid;">
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;">Instituição</td>					
+					<td style="border: 1px solid;">Doador</td>
+					<td style="border: 1px solid;">Pontuação</td>
+					<td style="border: 1px solid;">Comentário</td>
+					<td style="border: 1px solid;">Data</td>
+				</tr>
+				{% for ava in ava %}
+				<tr style="border: 1px solid;">
+					<td style="border: 1px solid;"><a href="/visualizarinstituicoes/{{ava.id_i}}">{{ava.instituicao}}</a></td>
+					<td style="border: 1px solid;"><a href="/visualizardoadores/{{ava.id_u}}">{{ava.usuario}}</a></td>
+					<td style="border: 1px solid;">{{ava.pontuacao}}</td>
+					<td style="border: 1px solid;">{{ava.comentario}}</td>
+					<td style="border: 1px solid;">{{ava.data}}</td>
+					<td style="border: 1px solid;"><a href="/excluiravaliacoes/{{ava.id_a}}"><img class="img-circle" src="https://images.onlinelabels.com/images/clip-art/molumen/molumen_red_round_error_warning_icon.png" alt="Generic placeholder image" width="20" height="20"></a></td>
+				</tr>
+	
+				{% endfor %}
+			</table>
+	</div>
+{% endblock %}

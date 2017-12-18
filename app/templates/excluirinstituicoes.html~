@@ -1,0 +1,10 @@
+{% extends 'baseadm.html' %}
+
+{% block content %}
+	<div style="position: absolute;" class="col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-2 main">
+		<h2 style="color: brown">Instituição excluída com sucesso do sistema</h2>
+		<h3><a href="/paginainicialadm"> Voltar à pagina inicial</h3>
+			
+	</div>
+	
+{% endblock %}

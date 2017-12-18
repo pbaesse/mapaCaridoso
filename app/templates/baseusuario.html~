@@ -25,7 +25,7 @@
 	<style>
 		table {
 		  border-collapse: collapse;
-		  width: 50em;
+		  width: 40em;
 		  border: 1px solid #666;
 		}
 		thead {
@@ -51,7 +51,14 @@
 		th, td {
 		  padding: 0.1em 1em;
 		}
+	       #map {
+		height: 560px;
+		width: 1050px;
+		border: 2px solid transparent;
+		border-radius: 20px;
+	       }
 	</style>
+
   </head>
 
   <body>
@@ -66,35 +73,23 @@
             <span class="icon-bar"></span>
           </button>
 	<img src="../static/images/tst.png" id= "tst" height="50" width="70">
-          <a style="color: #FFDEAD"class="navbar-brand" href="{{url_for('paginainicialusu')}}">Mapa Caridoso - {{ session['nome_u'] }}</a>
+          <a style="color: #FFDEAD"class="navbar-brand" href="{{url_for('paginainicialusu')}}">Mapa Caridoso - Doador</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-		<li><a style="color: #FFDEAD" href="{{url_for('paginainicialusu')}}">Página inicial</a></li>
+		<li><a style="color: #FFDEAD" href="{{url_for('perfilusu')}}">{{ session['nome_u'] }}</a></li>
             <li><a style="color: #FFDEAD" href="{{url_for('logout')}}">Sair</a></li>
           </ul>
         </div>
       </div>
     </nav>
-
-	<div class="alert alert-warning">
-		{% with messages = get_flashed_messages() %}
-		  {% if messages %}
-		    <ul class=flashes>
-		    {% for message in messages %}
-		      <li>{{ message }}</li>
-		    {% endfor %}
-		    </ul>
-		  {% endif %}
-		{% endwith %}
-	</div>
-
-	
 	<div class="container-fluid">
 	      <div class="row" >
 		<div class="col-sm-3 col-md-2 sidebar" >
 		  <ul class="nav nav-sidebar" >
-			<li class="active"><a style="color: brown" href="{{url_for('paginainicialusu')}}">Página Inicial <span class="sr-only">(current)</span></a></li>
+			<li class="active"><a style="color: brown" href="{{url_for('paginainicialusu')}}">Mapa <span class="sr-only">(current)</span></a></li>
+			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
+			<li class="active"><a style="color: brown" href="{{url_for('direcionamentosu')}}">Ajuda <span class="sr-only">(current)</span></a></li>
 			<hr style=" border-color: brown; box-sizing:border-box; width:100%;  "></hr>
 			<h4>Buscar Instituição</h4>
 			<li class="active"><a style="color: brown" href="{{url_for('tiposencontrados')}}">Tipo específico<span class="sr-only">(current)</span></a></li>
@@ -106,9 +101,11 @@
 			<li class="active"><a style="color: brown" href="{{url_for('denunciarins')}}">Denúncia de instituição<span class="sr-only">(current)</span></a></li>			
 			<hr style=" border-color:brown; box-sizing:border-box; width:100%;  "></hr>
 		  </ul>
-		 </div> 
-
+		 </div>
 			{% block paginainicialu %}
+			{% endblock %}
+
+			{% block content %}
 			{% endblock %}
 
 			{% block digitandoinstituicao %}
@@ -136,6 +133,9 @@
 			{% endblock %}	
 
 			{% block denunciarinstituicao %}
+			{% endblock %}	
+
+			{% block denunciarins %}
 			{% endblock %}			
 			
 		</div>

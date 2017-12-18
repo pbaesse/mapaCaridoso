@@ -2,15 +2,15 @@
 
 {% block instituicoesencontradas %}
 	<div style="position: absolute;" class="col-sm-9 col-sm-offset-4 col-md-9 col-md-offset-2 main">
-		<h2 style="color: brown">Instituições  encontradas</h2>
+		<h2 style="color: brown">Buscar instituição - Instituições cadastradas</h2>
 			<table style="border: 1px solid;">
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;">Nome:</td>
-					<td style="border: 1px solid;">Descrição:</td>
+					<td style="border: 1px solid;">Nome</td>
+					<td style="border: 1px solid;">Descrição</td>
 				</tr>
 				{% for ins in ins %}
 				<tr style="border: 1px solid;">
-					<td style="border: 1px solid;"><a href="/buscandoinstituicaodoacao/{{doacoes.id_i}}">{{ins.nome}}</a></td>
+					<td style="border: 1px solid;"><a href="/buscandoinstituicaodoacao/{{ins.id_i}}">{{ins.nome}}</a></td>
 					<td style="border: 1px solid;">{{ins.descricao}}</td>
 					
 			

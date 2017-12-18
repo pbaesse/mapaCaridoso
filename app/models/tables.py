@@ -10,7 +10,7 @@ class TipoUsuario(db.Model):
 		self.nome = nome
 
 	def __repr__(self):
-		return "<Tipo do Usuário %r>" % self.nome
+		return self.nome
 
 class Usuario(db.Model):
 	__tablename__ = "usuarios"
@@ -47,7 +47,7 @@ class Usuario(db.Model):
 		self.tipo_u = tipo_u
 
 	def __repr__(self):
-		return "<User %r>" % self.username
+		return self.nome
 	
 	
 
@@ -87,12 +87,10 @@ class Instituicao(db.Model):
 	id_i = db.Column(db.Integer, primary_key=True)
 	nome = db.Column(db.String)
 	descricao = db.Column(db.String)
-	id_u = db.Column(db.Integer, db.ForeignKey('usuarios.id_u'))
 	tipo_i = db.Column(db.Integer, db.ForeignKey('tipo_instituicoes.id_ti'))
 	password = db.Column(db.String)	
 	username = db.Column(db.String, unique=True)
 	
-	usuario = db.relationship('Usuario', foreign_keys = id_u)
 	tipo = db.relationship('TipoInstituicao', foreign_keys = tipo_i)
 	
 	@property
@@ -119,10 +117,9 @@ class Instituicao(db.Model):
 	def get_id(self):
 		return str(self.id_i)
 
-	def __init__(self, nome, descricao, id_u, tipo_i, password, username):
+	def __init__(self, nome, descricao, tipo_i, password, username):
 		self.nome = nome
 		self.descricao = descricao
-		self.id_u = id_u
 		self.tipo_i = tipo_i
 		self.password = password
 		self.username = username
@@ -134,11 +131,14 @@ class Avaliacao(db.Model):
 	__tablename__ = "avaliacoes"
 
 	id_a = db.Column(db.Integer, primary_key=True)
-	pontuacao = db.Column(db.Integer)
-	comentario = db.Column(db.String)
-	data = db.Column(db.String)
 	id_u = db.Column(db.Integer, db.ForeignKey('usuarios.id_u'))
 	id_i = db.Column(db.Integer, db.ForeignKey('instituicoes.id_i'))
+	pontuacao = db.Column(db.Integer)
+	comentario = db.Column(db.String)
+	dia = db.Column(db.Integer)
+	mes = db.Column(db.Integer)
+	ano = db.Column(db.Integer)
+	
 
 	usuario = db.relationship('Usuario', foreign_keys = id_u)
 	instituicao = db.relationship('Instituicao', foreign_keys = id_i)
@@ -158,12 +158,14 @@ class Avaliacao(db.Model):
 	def get_id(self):
 		return str(self.id_a)
 
-	def __init__(self, pontuacao, comentario, data, id_u, id_i):
+	def __init__(self, id_u, id_i, pontuacao, comentario, dia, mes, ano):
+		self.id_u = id_u
+		self.id_i = id_i		
 		self.pontuacao = pontuacao
 		self.comentario = comentario
-		self.data = data
-		self.id_u = id_u
-		self.id_i = id_i
+		self.dia = dia
+		self.mes = mes
+		self.ano = ano
 
 	def __repr__(self):
 		return "<Pontuação da avaliação %r>" % self.pontuacao
@@ -250,7 +252,9 @@ class Doacao(db.Model):
 	
 	id_d = db.Column(db.Integer, primary_key=True)
 	descricao = db.Column(db.String)
-	data = db.Column(db.String)
+	dia = db.Column(db.Integer)
+	mes = db.Column(db.Integer)
+	ano = db.Column(db.Integer)
 	id_i = db.Column(db.Integer, db.ForeignKey('instituicoes.id_i'))
 	id_td = db.Column(db.Integer, db.ForeignKey('tags_doacao.id_td'))
 
@@ -260,9 +264,11 @@ class Doacao(db.Model):
 	def __iter__(self):
 	        return iter(self.id_i)
 
-	def __init__(self, descricao, data, id_i, id_td):
+	def __init__(self, descricao, dia, mes, ano, id_i, id_td):
 		self.descricao = descricao
-		self.data = data
+		self.dia = dia
+		self.mes = mes
+		self.ano = ano
 		self.id_i = id_i
 		self.id_td = id_td
 
@@ -276,7 +282,9 @@ class Denuncia(db.Model):
 	id_u = db.Column(db.Integer, db.ForeignKey('usuarios.id_u'))
 	id_i = db.Column(db.Integer, db.ForeignKey('instituicoes.id_i'))
 	descricao = db.Column(db.String)
-	data = db.Column(db.String)
+	dia = db.Column(db.Integer)
+	mes = db.Column(db.Integer)
+	ano = db.Column(db.Integer)
 
 	usuario = db.relationship('Usuario', foreign_keys = id_u)
 	instituicao = db.relationship('Instituicao', foreign_keys = id_i)
@@ -296,12 +304,45 @@ class Denuncia(db.Model):
 	def get_id(self):
 		return str(self.id_ei)	
 
-	def __init__(self, id_u, id_i, descricao, data):
+	def __init__(self, id_u, id_i, descricao, dia, mes, ano):
 		self.id_u = id_u
 		self.id_i = id_i
 		self.descricao = descricao
-		self.data = data
-
+		self.dia = dia
+		self.mes = mes
+		self.ano = ano
 	def __repr__(self):
 		return "<Denuncia %r>" % self.descricao
 
+class Administrador(db.Model):
+	__tablename__ = "administrador"
+
+	id_ad = db.Column(db.Integer, primary_key=True)
+	nome = db.Column(db.String)
+	email = db.Column(db.String, unique=True)
+	username = db.Column(db.String, unique=True)
+	password = db.Column(db.String)
+	
+	@property
+	def is_authenticated(self):
+		return True
+
+	@property
+	def is_active(self):
+		return True
+
+	@property
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		return str(self.id_ad)
+
+	def __init__(self, nome, email, username, password):
+		self.nome = nome
+		self.email = email
+		self.username = username
+		self.password = password
+
+	def __repr__(self):
+		return self.username

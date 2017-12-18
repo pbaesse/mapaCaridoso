@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block loginu %}
+	<div class="container marketing">
+	<center>
+	<div class="col-lg-6" style="left:270px; border:1px solid;">
+ 	<img class="img-circle" src="../static/images/tst.png" width="150" height="120">
+	<h3 style="color: brown">Mapa Caridoso</h3>
+	<h4>Sistema online de cadastro de instituições de caridade e doadores, a fim de que o intermédio entre auxiliador e auxiliado se estreite, em um conglomerado online de instituições cadastradas, disponibilizadas, junto a seus endereços, em um mapa Google Maps.</h4>
+	</div>
+	</div>
+{% endblock %}
