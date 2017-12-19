@@ -53,6 +53,15 @@
 		}
 		return mostra_res();
 	}
+	function validarSenha(){
+	   senha = document.getElementById('senha').value;
+	   CNovaSenha = document.getElementById('CNovaSenha').value;
+	   if (senha != CNovaSenha) {
+		mostra1.innerHTML = '<tr><td bgcolor="red" style="color:white">Senhas diferentes</td></tr>';
+	   }else if(senha == CNovaSenha){
+		mostra1.innerHTML = '<tr><td bgcolor="green" style="color:white">Senhas iguais</td></tr>';
+		}
+	}
 	function mostra_res(){
 		if(forca<30){
 			mostra.innerHTML = '<tr><td bgcolor="red" width="'+forca+'"></td><td>Fraca</td></tr>';
@@ -64,6 +73,25 @@
 			mostra.innerHTML = '<tr><td bgcolor="green" width="'+forca+'"></td><td>Excelente</td></tr>';
 		}
 	}
+	function validacaoEmail(field) {
+		usuario = field.value.substring(0, field.value.indexOf("@"));
+		dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+
+		if ((usuario.length >=1) &&
+		    (dominio.length >=3) && 
+		    (usuario.search("@")==-1) && 
+		    (dominio.search("@")==-1) &&
+		    (usuario.search(" ")==-1) && 
+		    (dominio.search(" ")==-1) &&
+		    (dominio.search(".")!=-1) &&      
+		    (dominio.indexOf(".") >=1)&& 
+		    (dominio.lastIndexOf(".") < dominio.length - 1)) {
+		document.getElementById("msgemail").innerHTML="<tr><td style='color:blue'>E-mail válido</td></tr>";
+		}
+		else{
+		document.getElementById("msgemail").innerHTML="<tr><td style='color:red'>E-mail inválido</td></tr>";
+		}
+		}
 	</script>
 
 	<style>

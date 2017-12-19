@@ -63,7 +63,8 @@
 		</div>
 		<div class="form-group">
 			<label style="color : brown">Digite novamente a senha:</label>
-			{{form.password(class="form-control")}}	
+			{{form.password(class="form-control", id="CNovaSenha", onkeyup="javascript:validarSenha()")}}
+			<table id="mostra1"></table>	
 			{%if form.errors.password%}
 			<div class="alert alert-danger" role="alert">
 			<ul>
