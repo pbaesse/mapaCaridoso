@@ -63,6 +63,8 @@
 			{% else %}
 			<li><a style="color: #FFDEAD" href="{{url_for('quallogin')}}">Acessar</a></li>
 			{% endif %}
+		<li> <hr style=" transform: rotate(90deg); width: 30px; "></li>
+		<li><a style="color: #FFDEAD; float:rigth" href="{{url_for('logaradm')}}">Administrador</a></li>
           </ul>
         </div>
       </div>
@@ -91,7 +93,7 @@
 	<div class="masthead">
 		<nav>
 		  <ul class="nav nav-justified">
-		    <li style="background-color : brown"><a style="color: " href="{{url_for('contatogeral')}}">Contato geral</a></li>
+		    <li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('contatogeral')}}">Contato geral</a></li>
  			<li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('sobre')}}">Sobre</a></li>
 		    <li style="background-color : brown"><a style="color: #FFDEAD" href="{{url_for('mapacaridoso')}}"> Mapa Caridoso © 2016-2017</a></li>
 		  </ul>
